@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="gestionnotes2021V2" Class="ENSATDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=desktop-cmmgaas\sqlexpress;Initial Catalog=gestionnotes2021V2;Integrated Security=True" SettingsObjectName="TP5_SalmaEl.Properties.Settings" SettingsPropertyName="gestionnotes2021V2ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.eleves" Member="eleves">
+    <Type Name="eleves">
+      <Column Name="codeElev" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nom" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="prenom" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="code_Fil" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="niveau" Type="System.String" DbType="NVarChar(21)" CanBeNull="true" />
+      <Association Name="eleves_moyennes" Member="moyennes" ThisKey="codeElev" OtherKey="codeElev" Type="moyennes" />
+      <Association Name="eleves_notes2021" Member="notes2021" ThisKey="codeElev" OtherKey="codeElev" Type="notes2021" />
+      <Association Name="filiere_eleves" Member="filiere" ThisKey="code_Fil" OtherKey="codeF" Type="filiere" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.filiere" Member="filiere">
+    <Type Name="filiere">
+      <Column Name="codeF" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="designation" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Association Name="filiere_eleves" Member="eleves" ThisKey="codeF" OtherKey="code_Fil" Type="eleves" />
+      <Association Name="filiere_module" Member="module" ThisKey="codeF" OtherKey="Cod_Fil" Type="module" />
+      <Association Name="filiere_moyennes" Member="moyennes" ThisKey="codeF" OtherKey="codeF" Type="moyennes" />
+    </Type>
+  </Table>
+  <Table Name="dbo.matieres" Member="matieres">
+    <Type Name="matieres">
+      <Column Name="codeMat" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="designation" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="coeff" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="codeModule" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="RespMat" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Association Name="matieres_notes2021" Member="notes2021" ThisKey="codeMat" OtherKey="codeMat" Type="notes2021" />
+      <Association Name="matieres_Quizz" Member="Quizz" ThisKey="codeMat" OtherKey="IDmat" Type="Quizz" />
+      <Association Name="module_matieres" Member="module" ThisKey="codeModule" OtherKey="codeModul" Type="module" IsForeignKey="true" />
+      <Association Name="Professeurs_matieres" Member="Professeurs" ThisKey="RespMat" OtherKey="ID" Type="Professeurs" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.module" Member="module">
+    <Type Name="module">
+      <Column Name="codeModul" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Designation" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="niveau" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="NombreMatieres" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Semestre" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Responsable" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Cod_Fil" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Association Name="module_matieres" Member="matieres" ThisKey="codeModul" OtherKey="codeModule" Type="matieres" />
+      <Association Name="filiere_module" Member="filiere" ThisKey="Cod_Fil" OtherKey="codeF" Type="filiere" IsForeignKey="true" />
+      <Association Name="Professeurs_module" Member="Professeurs" ThisKey="Responsable" OtherKey="ID" Type="Professeurs" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.moyennes" Member="moyennes">
+    <Type Name="moyennes">
+      <Column Name="codeElev" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="codeF" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="niveau" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Moyenne_Ann" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="IDquiz" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Association Name="eleves_moyennes" Member="eleves" ThisKey="codeElev" OtherKey="codeElev" Type="eleves" IsForeignKey="true" />
+      <Association Name="filiere_moyennes" Member="filiere" ThisKey="codeF" OtherKey="codeF" Type="filiere" IsForeignKey="true" />
+      <Association Name="Quizz_moyennes" Member="Quizz" ThisKey="IDquiz" OtherKey="IDquiz" Type="Quizz" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.notes2021" Member="notes2021">
+    <Type Name="notes2021">
+      <Column Name="codeElev" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="codeMat" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="note" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="eleves_notes2021" Member="eleves" ThisKey="codeElev" OtherKey="codeElev" Type="eleves" IsForeignKey="true" />
+      <Association Name="matieres_notes2021" Member="matieres" ThisKey="codeMat" OtherKey="codeMat" Type="matieres" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Professeurs" Member="Professeurs">
+    <Type Name="Professeurs">
+      <Column Name="ID" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="nomP" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="prenomP" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Association Name="Professeurs_matieres" Member="matieres" ThisKey="ID" OtherKey="RespMat" Type="matieres" />
+      <Association Name="Professeurs_module" Member="module" ThisKey="ID" OtherKey="Responsable" Type="module" />
+      <Association Name="Professeurs_Quizz" Member="Quizz" ThisKey="ID" OtherKey="IDprof" Type="Quizz" />
+    </Type>
+  </Table>
+  <Table Name="dbo.QuestionT" Member="QuestionT">
+    <Type Name="QuestionT">
+      <Column Name="IDquestion" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDquizz" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Question" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="poids" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="QuestionT_ReponseT" Member="ReponseT" ThisKey="IDquestion" OtherKey="IDquestion" Type="ReponseT" />
+      <Association Name="Quizz_QuestionT" Member="Quizz" ThisKey="IDquizz" OtherKey="IDquiz" Type="Quizz" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Quizz" Member="Quizz">
+    <Type Name="Quizz">
+      <Column Name="IDquiz" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDmat" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="IDprof" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Designation" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Quizz_moyennes" Member="moyennes" ThisKey="IDquiz" OtherKey="IDquiz" Type="moyennes" />
+      <Association Name="Quizz_QuestionT" Member="QuestionT" ThisKey="IDquiz" OtherKey="IDquizz" Type="QuestionT" />
+      <Association Name="matieres_Quizz" Member="matieres" ThisKey="IDmat" OtherKey="codeMat" Type="matieres" IsForeignKey="true" />
+      <Association Name="Professeurs_Quizz" Member="Professeurs" ThisKey="IDprof" OtherKey="ID" Type="Professeurs" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ReponseT" Member="ReponseT">
+    <Type Name="ReponseT">
+      <Column Name="IDreponse" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IDquestion" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Reponse" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Statut" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Association Name="QuestionT_ReponseT" Member="QuestionT" ThisKey="IDquestion" OtherKey="IDquestion" Type="QuestionT" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
