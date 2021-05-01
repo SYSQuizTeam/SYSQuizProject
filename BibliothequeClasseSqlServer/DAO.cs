@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SqlLibrary
 {
+    //Class DAO
     public abstract class DAO : Sql
     {
         public static string[] param_co = new string[2];
