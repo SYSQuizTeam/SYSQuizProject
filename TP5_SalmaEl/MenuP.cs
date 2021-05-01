@@ -15,15 +15,36 @@ using SqlLibrary;
 
 namespace TP5_SalmaEl
 {
-    public partial class Menu : Form
+    public partial class MenuP : Form
     {
-        public Menu()
+        public MenuP(string nom,string prenom)
         {
             InitializeComponent();
+            label5.Text = nom;
+            label6.Text = prenom;
+        }
+
+        //Hide Professor acceuil Info
+        public void HideAcceuilInfo()
+        {
+            label3.Text = "";
+            label4.Text = "";
+            label5.Text = "";
+            label6.Text = "";
+            NameProf.Text = "";
+            label9.Text = "";
+            label10.Text = "";
+          
         }
 
         private void etudiantsToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+            //Hide Professor acceuil Info
+            HideAcceuilInfo();
+
+
+
             bool IsOpen = false;
             foreach (Form f in Application.OpenForms)
             {
@@ -45,6 +66,10 @@ namespace TP5_SalmaEl
 
         private void notesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            //Hide Professor acceuil Info
+            HideAcceuilInfo();
+
+
             bool IsOpen = false;
             foreach (Form f in Application.OpenForms)
             {
@@ -69,6 +94,11 @@ namespace TP5_SalmaEl
 
         private void filièresToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+            //Hide Professor acceuil Info
+            HideAcceuilInfo();
+
+
             bool IsOpen = false;
             foreach (Form f in Application.OpenForms)
             {
@@ -90,6 +120,11 @@ namespace TP5_SalmaEl
 
         private void matièresToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+            //Hide Professor acceuil Info
+            HideAcceuilInfo();
+
+
             bool IsOpen = false;
             foreach (Form f in Application.OpenForms)
             {
@@ -111,6 +146,11 @@ namespace TP5_SalmaEl
 
         private void modulesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+            //Hide Professor acceuil Info
+            HideAcceuilInfo();
+
+
             bool IsOpen = false;
             foreach (Form f in Application.OpenForms)
             {
@@ -132,6 +172,11 @@ namespace TP5_SalmaEl
 
         private void bilanToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+            //Hide Professor acceuil Info
+            HideAcceuilInfo();
+
+
             bool IsOpen = false;
             foreach (Form f in Application.OpenForms)
             {
@@ -152,6 +197,11 @@ namespace TP5_SalmaEl
         }
 
         private void gestionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
         {
 
         }
