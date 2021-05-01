@@ -329,5 +329,10 @@ namespace TP5_SalmaEl
                 NoteTexte.Text = N.Note1.ToString();
             }
         }
+
+        private void CodeText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

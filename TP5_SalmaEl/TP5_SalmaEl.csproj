@@ -67,6 +67,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Acceuil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Acceuil.Designer.cs">
+      <DependentUpon>Acceuil.cs</DependentUpon>
+    </Compile>
     <Compile Include="Bilan Annuel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -79,6 +85,12 @@
     <Compile Include="Consultation Des Notes.Designer.cs">
       <DependentUpon>Consultation Des Notes.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsultationScores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsultationScores.Designer.cs">
+      <DependentUpon>ConsultationScores.cs</DependentUpon>
+    </Compile>
     <Compile Include="Eleve.cs" />
     <Compile Include="EleveDAO.cs" />
     <Compile Include="ENSAT.designer.cs">
@@ -88,11 +100,17 @@
     </Compile>
     <Compile Include="Filiere.cs" />
     <Compile Include="FiliereDAO.cs" />
-    <Compile Include="Menu.cs">
+    <Compile Include="MenuE.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Menu.Designer.cs">
-      <DependentUpon>Menu.cs</DependentUpon>
+    <Compile Include="MenuE.Designer.cs">
+      <DependentUpon>MenuE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuP.Designer.cs">
+      <DependentUpon>MenuP.cs</DependentUpon>
     </Compile>
     <Compile Include="GestionAllMatieres.cs">
       <SubType>Form</SubType>
@@ -140,14 +158,23 @@
     <Compile Include="ProfesseurDAO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Acceuil.resx">
+      <DependentUpon>Acceuil.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Bilan Annuel.resx">
       <DependentUpon>Bilan Annuel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Consultation Des Notes.resx">
       <DependentUpon>Consultation Des Notes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Menu.resx">
-      <DependentUpon>Menu.cs</DependentUpon>
+    <EmbeddedResource Include="ConsultationScores.resx">
+      <DependentUpon>ConsultationScores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuE.resx">
+      <DependentUpon>MenuE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuP.resx">
+      <DependentUpon>MenuP.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GestionAllMatieres.resx">
       <DependentUpon>GestionAllMatieres.cs</DependentUpon>
