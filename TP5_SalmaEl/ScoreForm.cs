@@ -18,5 +18,9 @@ namespace TP5_SalmaEl
             ScoreBox.Text = QuestionForm.note.ToString();
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
