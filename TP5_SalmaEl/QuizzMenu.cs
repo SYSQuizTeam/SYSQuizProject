@@ -35,7 +35,7 @@ namespace TP5_SalmaEl
             IDquizz = QuizzList.SelectedValue.ToString();
             this.Hide();
             QuestionForm.questionIndex = 0;
-            QuestionForm.note = 0;
+            
             QuestionForm questionForm = new QuestionForm();
             questionForm.Show();
         }

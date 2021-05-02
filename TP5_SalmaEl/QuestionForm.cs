@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,8 +21,8 @@ namespace TP5_SalmaEl
         public int CountQuestion = 0;
         public double poids = 0;
         /* Set note to count the total score of the quiz */
-        public static double note = 0;
-
+        public static List<double> score = new List<double>();
+        public List<double> notes=new List<double>();
         public QuestionForm()
         {
 
@@ -39,6 +40,7 @@ namespace TP5_SalmaEl
             designiationQuiz.Text = quizDesigniation;
 
         }
+
         /* Function that get all answers by index of question */
         public List<ReponseT> LoadAnswers(int index)
         {
@@ -58,6 +60,7 @@ namespace TP5_SalmaEl
                             select reponse).ToList();
             return Reponses;
         }
+
         public void LoadQuestion(int index)
         {
             /*Load Answers*/
@@ -69,6 +72,7 @@ namespace TP5_SalmaEl
             reponse4.Text = Reponses.ElementAt(3).Reponse;
 
         }
+
         /* Get user Answer and calculate the score*/
         public void GetAnswer(int index)
         {
@@ -81,7 +85,14 @@ namespace TP5_SalmaEl
             else if (radioButton3.Checked == true) statut = Reponses.ElementAt(2).Statut;
             else if (radioButton4.Checked == true) statut = Reponses.ElementAt(3).Statut;
             /*calculate score */
-            if (statut == "true") note += poids;
+            if (statut == "true")
+            {
+                notes.Insert(index, poids);
+            }
+            else
+            {
+                notes.Insert(index, 0);
+            }
             /*Reset radio Buttons*/
             foreach (Control c in this.Controls)
             {
@@ -96,7 +107,7 @@ namespace TP5_SalmaEl
              to get the next question until questionIndex eqauls question counter - 1 */
             questionIndex++;
 
-            if ((questionIndex < CountQuestion) &&( questionIndex>0))
+            if (questionIndex < CountQuestion)
             {
                 LoadQuestion(questionIndex);
             }
@@ -104,10 +115,12 @@ namespace TP5_SalmaEl
             else
             {
                 this.Hide();
+                score = notes;
                 ScoreForm scoreForm = new ScoreForm();
                 scoreForm.Show();
             }
         }
+
         /* get previous question */
         private void PreviousButton_Click(object sender, EventArgs e)
         {
@@ -116,11 +129,11 @@ namespace TP5_SalmaEl
             if (index > 0) { 
                 questionIndex--;
                 /*Load prvious question */
-                LoadQuestion(--index);
+                LoadQuestion(questionIndex);
+                notes.RemoveAt(questionIndex);
             }
-            Console.WriteLine(questionIndex);
-            
         }
+
     }
 
 

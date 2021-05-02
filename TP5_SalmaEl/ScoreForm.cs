@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,13 +17,20 @@ namespace TP5_SalmaEl
         Guid ID = Guid.NewGuid();
         public ScoreForm()
         {
+           double moy = 0;
             InitializeComponent();
-            /*get calculated score from previous Form*/
-            ScoreBox.Text = QuestionForm.note.ToString();
+            /*get List of scores from previous Form*/
+            List<double> scores = QuestionForm.score;
+            foreach(double s in scores)
+            {
+                moy += s;
+            }
+            ScoreBox.Text = moy.ToString();
+            /*insert score in database*/
             string IDmat = (from quiz in dataDS.Quizz
                          where quiz.IDquiz == QuizzMenu.IDquizz
                          select quiz.IDmat).FirstOrDefault();
-            notes2021 note = new notes2021{ id = ID.ToString().Substring(0,6), codeElev= Acceuil.codeE,codeMat = IDmat, note = QuestionForm.note};
+            notes2021 note = new notes2021{ id = ID.ToString().Substring(0,6), codeElev= Acceuil.codeE,codeMat = IDmat, note = moy};
 
             try
             {
