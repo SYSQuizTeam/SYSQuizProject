@@ -53,6 +53,8 @@ namespace TP5_SalmaEl
             HideAcceuilInfo();
 
             //Open Pass a Quiz Window
+            QuizzMenu quiz = new QuizzMenu();
+            quiz.Show();
         }
 
         private void consultationNoteToolStripMenuItem_Click(object sender, EventArgs e)
