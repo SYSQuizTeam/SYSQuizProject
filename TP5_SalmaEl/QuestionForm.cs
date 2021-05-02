@@ -14,11 +14,12 @@ namespace TP5_SalmaEl
     {
         public static int questionIndex = 0;
         ENSATDataContext dataDS = new ENSATDataContext();
-        /* get the index of selected quizz from the previous Form */
+        /* Get the index of selected quizz from the previous Form */
         string idQuiz = QuizzMenu.IDquizz;
-        /* set a counter to count the number of questions */
+        /* Set a counter to count the number of questions */
         public int CountQuestion = 0;
         public double poids = 0;
+        /* Set note to count the total score of the quiz */
         public static double note = 0;
 
         public QuestionForm()
@@ -26,30 +27,32 @@ namespace TP5_SalmaEl
 
             InitializeComponent();
             LoadQuestion(questionIndex);
-            /*count Number of Questions */
+            /*Count Number of Questions */
             CountQuestion = (from question in dataDS.QuestionT
                                  where question.IDquizz == idQuiz
                                  select question).Count();
-            /* get the designiqtion of the quizz */
+
+            /* Get the designiqtion of the quizz */
             string quizDesigniation = (from quiz in dataDS.Quizz
                                        where quiz.IDquiz == idQuiz
                                        select quiz.Designation).FirstOrDefault();
             designiationQuiz.Text = quizDesigniation;
 
         }
+        /* Function that get all answers by index of question */
         public List<ReponseT> LoadAnswers(int index)
         {
-            /*get all questions of selected quiz*/
+            /*Get all questions of selected quiz*/
             var questions = (from question in dataDS.QuestionT
                              where question.IDquizz == idQuiz
                              select question).ToList();
 
-            /*get question by index */
+            /*Get question by index */
             var q = questions.ElementAt(index);
             QuestionQuiz.Text = q.Question;
             poids = Convert.ToDouble(q.poids);
 
-            /*get all answers of the selected question*/
+            /*Get all answers of the selected question*/
             var Reponses = (from reponse in dataDS.ReponseT
                             where reponse.IDquestion == q.IDquestion
                             select reponse).ToList();
@@ -57,7 +60,7 @@ namespace TP5_SalmaEl
         }
         public void LoadQuestion(int index)
         {
-
+            /*Load Answers*/
             List<ReponseT> Reponses = LoadAnswers(index);
 
             reponse1.Text = Reponses.ElementAt(0).Reponse;
@@ -65,32 +68,21 @@ namespace TP5_SalmaEl
             reponse3.Text = Reponses.ElementAt(2).Reponse;
             reponse4.Text = Reponses.ElementAt(3).Reponse;
 
-            string statut="";
-
-
-            if (radioButton1.Checked == true) statut = Reponses.ElementAt(0).Statut;
-            else if (radioButton2.Checked == true) statut = Reponses.ElementAt(1).Statut;
-            else if (radioButton3.Checked == true) statut = Reponses.ElementAt(2).Statut;
-            else if (radioButton4.Checked == true) statut = Reponses.ElementAt(3).Statut;
-
-            radioButton1.Checked = false;
-            radioButton2.Checked = false;
-            radioButton3.Checked = false;
-            radioButton4.Checked = false;
         }
+        /* Get user Answer and calculate the score*/
         public void GetAnswer(int index)
         {
             List<ReponseT> Reponses = LoadAnswers(index);
 
             string statut = "";
-
+            /* Get the statut of choosen answer*/
             if (radioButton1.Checked == true) statut = Reponses.ElementAt(0).Statut;
             else if (radioButton2.Checked == true) statut = Reponses.ElementAt(1).Statut;
             else if (radioButton3.Checked == true) statut = Reponses.ElementAt(2).Statut;
             else if (radioButton4.Checked == true) statut = Reponses.ElementAt(3).Statut;
-
+            /*calculate score */
             if (statut == "true") note += poids;
-
+            /*Reset radio Buttons*/
             foreach (Control c in this.Controls)
             {
                 if (c is RadioButton) ((RadioButton)c).Checked = false;
@@ -100,15 +92,15 @@ namespace TP5_SalmaEl
         private void NextQuestionBTN_Click(object sender, EventArgs e)
         {
             GetAnswer(questionIndex);
-            /* when the button next is clicked increment the value
-             of questionindex to get the next question until questionIndex eqauls question counter - 1 */
+            /* When the button next is clicked increment the value of questionindex 
+             to get the next question until questionIndex eqauls question counter - 1 */
             questionIndex++;
 
             if (questionIndex < CountQuestion)
             {
                 LoadQuestion(questionIndex);
             }
-            /* once we show all questions we show the next Form to display score and store it in the DB */
+            /* Once we show all questions we show the next Form to display score and store it in the DB */
             else
             {
                 this.Hide();

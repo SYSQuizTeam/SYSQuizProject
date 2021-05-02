@@ -52,9 +52,7 @@ namespace TP5_SalmaEl
             //Hide Acceuil Informations 
             HideAcceuilInfo();
 
-            //Open Pass a Quiz 
-            QuizzMenu FormQuizz = new QuizzMenu();
-            FormQuizz.Show();
+            //Open Pass a Quiz Window
         }
 
         private void consultationNoteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -82,6 +80,11 @@ namespace TP5_SalmaEl
               //  GN.MdiParent = this;
                 GN.Show();
             }
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

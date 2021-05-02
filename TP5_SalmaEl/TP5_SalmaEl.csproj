@@ -79,6 +79,12 @@
     <Compile Include="Bilan Annuel.Designer.cs">
       <DependentUpon>Bilan Annuel.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConsNoteE.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConsNoteE.Designer.cs">
+      <DependentUpon>ConsNoteE.cs</DependentUpon>
+    </Compile>
     <Compile Include="Consultation Des Notes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -181,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Bilan Annuel.resx">
       <DependentUpon>Bilan Annuel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConsNoteE.resx">
+      <DependentUpon>ConsNoteE.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Consultation Des Notes.resx">
       <DependentUpon>Consultation Des Notes.cs</DependentUpon>

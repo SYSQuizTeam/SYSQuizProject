@@ -29,17 +29,9 @@ namespace TP5_SalmaEl
         /// </summary>
         private void InitializeComponent()
         {
-            this.ScoreBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.ScoreBox = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // ScoreBox
-            // 
-            this.ScoreBox.Location = new System.Drawing.Point(309, 233);
-            this.ScoreBox.Name = "ScoreBox";
-            this.ScoreBox.ReadOnly = true;
-            this.ScoreBox.Size = new System.Drawing.Size(141, 20);
-            this.ScoreBox.TabIndex = 2;
             // 
             // label1
             // 
@@ -52,13 +44,23 @@ namespace TP5_SalmaEl
             this.label1.Text = "Votre Score est :";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // ScoreBox
+            // 
+            this.ScoreBox.AutoSize = true;
+            this.ScoreBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ScoreBox.Location = new System.Drawing.Point(323, 243);
+            this.ScoreBox.Name = "ScoreBox";
+            this.ScoreBox.Size = new System.Drawing.Size(101, 24);
+            this.ScoreBox.TabIndex = 2;
+            this.ScoreBox.Text = "ScoreBox";
+            // 
             // ScoreForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.ScoreBox);
+            this.Controls.Add(this.label1);
             this.Name = "ScoreForm";
             this.Text = "ScoreForm";
             this.ResumeLayout(false);
@@ -67,8 +69,7 @@ namespace TP5_SalmaEl
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox ScoreBox;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label ScoreBox;
     }
 }

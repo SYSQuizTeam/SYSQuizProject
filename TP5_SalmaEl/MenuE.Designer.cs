@@ -81,7 +81,7 @@
             this.label1.Size = new System.Drawing.Size(226, 39);
             this.label1.TabIndex = 1;
             this.label1.Text = "BIENVENUE";
-
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // NameStudent
             // 
@@ -192,6 +192,7 @@
             this.label11.Size = new System.Drawing.Size(108, 36);
             this.label11.TabIndex = 12;
             this.label11.Text = "Code :";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // label12
             // 

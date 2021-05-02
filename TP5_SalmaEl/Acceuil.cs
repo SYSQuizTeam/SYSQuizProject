@@ -12,6 +12,7 @@ namespace TP5_SalmaEl
 {
     public partial class Acceuil : Form
     {
+        public static string codeE = "";
         public Acceuil()
         {
             InitializeComponent();
@@ -40,11 +41,11 @@ namespace TP5_SalmaEl
                 string prenom = (from u in linqDB.eleves where u.codeElev == code select u.prenom).Single();
                 string filiere = (from u in linqDB.eleves where u.codeElev == code select u.code_Fil).Single();
                 string niveau = (from u in linqDB.eleves where u.codeElev == code select u.niveau).Single();
-               
+
 
                 //Open Student View
 
-                
+                codeE = c;
                 MenuE f2 = new MenuE(c,nom,prenom,filiere,niveau);
                    
                     f2.Show();

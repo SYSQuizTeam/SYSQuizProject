@@ -94,7 +94,7 @@ namespace TP5_SalmaEl
             // 
             this.reponse3.AutoSize = true;
             this.reponse3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.reponse3.Location = new System.Drawing.Point(350, 251);
+            this.reponse3.Location = new System.Drawing.Point(350, 246);
             this.reponse3.Name = "reponse3";
             this.reponse3.Size = new System.Drawing.Size(35, 20);
             this.reponse3.TabIndex = 5;

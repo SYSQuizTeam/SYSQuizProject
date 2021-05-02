@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="gestionnotes2021V2" Class="ENSATDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=desktop-cmmgaas\sqlexpress;Initial Catalog=gestionnotes2021V2;Integrated Security=True" SettingsObjectName="TP5_SalmaEl.Properties.Settings" SettingsPropertyName="gestionnotes2021V2ConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-DQ4GP3S;Initial Catalog=gestionnotes2021V2;Integrated Security=True" SettingsObjectName="TP5_SalmaEl.Properties.Settings" SettingsPropertyName="gestionnotes2021V2ConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.eleves" Member="eleves">
     <Type Name="eleves">
       <Column Name="codeElev" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -8,7 +8,7 @@
       <Column Name="code_Fil" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="niveau" Type="System.String" DbType="NVarChar(21)" CanBeNull="true" />
       <Association Name="eleves_moyennes" Member="moyennes" ThisKey="codeElev" OtherKey="codeElev" Type="moyennes" />
-      <Association Name="eleves_notes2021" Member="notes2021" ThisKey="codeElev" OtherKey="codeElev" Type="notes2021" />
+      <Association Name="eleves_notes2021" Member="notes2021s" ThisKey="codeElev" OtherKey="codeElev" Type="notes2021" />
       <Association Name="filiere_eleves" Member="filiere" ThisKey="code_Fil" OtherKey="codeF" Type="filiere" IsForeignKey="true" />
     </Type>
   </Table>
@@ -28,8 +28,8 @@
       <Column Name="coeff" Type="System.Double" DbType="Float" CanBeNull="true" />
       <Column Name="codeModule" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="RespMat" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Association Name="matieres_notes2021" Member="notes2021" ThisKey="codeMat" OtherKey="codeMat" Type="notes2021" />
       <Association Name="matieres_Quizz" Member="Quizz" ThisKey="codeMat" OtherKey="IDmat" Type="Quizz" />
+      <Association Name="matieres_notes2021" Member="notes2021s" ThisKey="codeMat" OtherKey="codeMat" Type="notes2021" />
       <Association Name="module_matieres" Member="module" ThisKey="codeModule" OtherKey="codeModul" Type="module" IsForeignKey="true" />
       <Association Name="Professeurs_matieres" Member="Professeurs" ThisKey="RespMat" OtherKey="ID" Type="Professeurs" IsForeignKey="true" />
     </Type>
@@ -58,15 +58,6 @@
       <Association Name="eleves_moyennes" Member="eleves" ThisKey="codeElev" OtherKey="codeElev" Type="eleves" IsForeignKey="true" />
       <Association Name="filiere_moyennes" Member="filiere" ThisKey="codeF" OtherKey="codeF" Type="filiere" IsForeignKey="true" />
       <Association Name="Quizz_moyennes" Member="Quizz" ThisKey="IDquiz" OtherKey="IDquiz" Type="Quizz" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.notes2021" Member="notes2021">
-    <Type Name="notes2021">
-      <Column Name="codeElev" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="codeMat" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="note" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Association Name="eleves_notes2021" Member="eleves" ThisKey="codeElev" OtherKey="codeElev" Type="eleves" IsForeignKey="true" />
-      <Association Name="matieres_notes2021" Member="matieres" ThisKey="codeMat" OtherKey="codeMat" Type="matieres" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Professeurs" Member="Professeurs">
@@ -108,6 +99,16 @@
       <Column Name="Reponse" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
       <Column Name="Statut" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Association Name="QuestionT_ReponseT" Member="QuestionT" ThisKey="IDquestion" OtherKey="IDquestion" Type="QuestionT" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.notes2021" Member="notes2021s">
+    <Type Name="notes2021">
+      <Column Name="codeElev" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="codeMat" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="note" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="id" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="eleves_notes2021" Member="eleves" ThisKey="codeElev" OtherKey="codeElev" Type="eleves" IsForeignKey="true" />
+      <Association Name="matieres_notes2021" Member="matieres" ThisKey="codeMat" OtherKey="codeMat" Type="matieres" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
