@@ -96,7 +96,7 @@ namespace TP5_SalmaEl
              to get the next question until questionIndex eqauls question counter - 1 */
             questionIndex++;
 
-            if (questionIndex < CountQuestion)
+            if ((questionIndex < CountQuestion) &&( questionIndex>0))
             {
                 LoadQuestion(questionIndex);
             }
@@ -108,7 +108,19 @@ namespace TP5_SalmaEl
                 scoreForm.Show();
             }
         }
-
+        /* get previous question */
+        private void PreviousButton_Click(object sender, EventArgs e)
+        {
+            /*Get current index */
+            int index = questionIndex;
+            if (index > 0) { 
+                questionIndex--;
+                /*Load prvious question */
+                LoadQuestion(--index);
+            }
+            Console.WriteLine(questionIndex);
+            
+        }
     }
 
 

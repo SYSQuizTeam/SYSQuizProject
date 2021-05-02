@@ -41,6 +41,7 @@ namespace TP5_SalmaEl
             this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
             this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.PreviousButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // designiationQuiz
@@ -112,7 +113,7 @@ namespace TP5_SalmaEl
             // 
             // NextQuestionBTN
             // 
-            this.NextQuestionBTN.Location = new System.Drawing.Point(316, 336);
+            this.NextQuestionBTN.Location = new System.Drawing.Point(446, 336);
             this.NextQuestionBTN.Name = "NextQuestionBTN";
             this.NextQuestionBTN.Size = new System.Drawing.Size(94, 33);
             this.NextQuestionBTN.TabIndex = 7;
@@ -160,11 +161,22 @@ namespace TP5_SalmaEl
             this.radioButton4.TabStop = true;
             this.radioButton4.UseVisualStyleBackColor = true;
             // 
+            // PreviousButton
+            // 
+            this.PreviousButton.Location = new System.Drawing.Point(185, 336);
+            this.PreviousButton.Name = "PreviousButton";
+            this.PreviousButton.Size = new System.Drawing.Size(92, 33);
+            this.PreviousButton.TabIndex = 12;
+            this.PreviousButton.Text = "Precedent";
+            this.PreviousButton.UseVisualStyleBackColor = true;
+            this.PreviousButton.Click += new System.EventHandler(this.PreviousButton_Click);
+            // 
             // QuestionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.PreviousButton);
             this.Controls.Add(this.radioButton4);
             this.Controls.Add(this.radioButton3);
             this.Controls.Add(this.radioButton2);
@@ -198,5 +210,6 @@ namespace TP5_SalmaEl
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.Button PreviousButton;
     }
 }
