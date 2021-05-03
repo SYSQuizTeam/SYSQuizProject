@@ -14,8 +14,8 @@ namespace SqlLibrary
 
         static DAO()
         {
-            param_co[0] = "gestionnotes2021V2";
-            param_co[1] = @"DESKTOP-CMMGAAS\SQLEXPRESS";
+            param_co[0] = "gestionnotes2021V2.bacpac";
+            param_co[1] = @"DESKTOP-45UMB69";
            // param_co[2] = "root";
             //param_co[3] = "";
             

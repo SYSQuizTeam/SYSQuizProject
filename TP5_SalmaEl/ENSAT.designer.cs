@@ -22,7 +22,7 @@ namespace TP5_SalmaEl
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="gestionnotes2021V2")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="gestionnotes2021V2.bacpac")]
 	public partial class ENSATDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -60,7 +60,7 @@ namespace TP5_SalmaEl
     #endregion
 		
 		public ENSATDataContext() : 
-				base(global::TP5_SalmaEl.Properties.Settings.Default.gestionnotes2021V2ConnectionString, mappingSource)
+				base(global::TP5_SalmaEl.Properties.Settings.Default.gestionnotes2021V2_bacpacConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
