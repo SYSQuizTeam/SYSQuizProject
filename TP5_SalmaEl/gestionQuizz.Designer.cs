@@ -78,6 +78,7 @@ namespace TP5_SalmaEl
             this.continuer_btn.TabIndex = 4;
             this.continuer_btn.Text = "Continuer";
             this.continuer_btn.UseVisualStyleBackColor = true;
+            this.continuer_btn.Click += new System.EventHandler(this.continuer_btn_Click);
             // 
             // quizz_t
             // 
@@ -128,7 +129,7 @@ namespace TP5_SalmaEl
             this.question_panel.Controls.Add(this.question_t);
             this.question_panel.Controls.Add(this.question_label);
             this.question_panel.Controls.Add(this.quizz_name_label);
-            this.question_panel.Location = new System.Drawing.Point(46, 3);
+            this.question_panel.Location = new System.Drawing.Point(43, 2);
             this.question_panel.Name = "question_panel";
             this.question_panel.Size = new System.Drawing.Size(712, 445);
             this.question_panel.TabIndex = 14;

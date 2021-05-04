@@ -213,5 +213,11 @@ namespace TP5_SalmaEl
 
             MessageBox.Show("le quizz " + nom_t.Text + " de matiere " + matiere_t.Text + " est bien creer", "Information");
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            gestionQuizz gq = new gestionQuizz();
+            gq.ShowDialog();
+        }
     }
 }

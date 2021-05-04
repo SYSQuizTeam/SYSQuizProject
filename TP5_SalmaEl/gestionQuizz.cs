@@ -15,6 +15,12 @@ namespace TP5_SalmaEl
         public gestionQuizz()
         {
             InitializeComponent();
+            question_panel.Visible = false;
+        }
+
+        private void continuer_btn_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

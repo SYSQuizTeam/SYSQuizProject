@@ -90,6 +90,7 @@ namespace TP5_SalmaEl
             this.button1.TabIndex = 16;
             this.button1.Text = "Gestion des Quizz";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -201,7 +202,7 @@ namespace TP5_SalmaEl
             this.question_panel.Controls.Add(this.question_t);
             this.question_panel.Controls.Add(this.question_label);
             this.question_panel.Controls.Add(this.quizz_name_label);
-            this.question_panel.Location = new System.Drawing.Point(77, -1);
+            this.question_panel.Location = new System.Drawing.Point(65, -1);
             this.question_panel.Name = "question_panel";
             this.question_panel.Size = new System.Drawing.Size(649, 439);
             this.question_panel.TabIndex = 17;
