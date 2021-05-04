@@ -37,7 +37,6 @@ namespace TP5_SalmaEl
             this.question_panel = new System.Windows.Forms.Panel();
             this.supprimer_btn = new System.Windows.Forms.Button();
             this.modifier_qst_btn = new System.Windows.Forms.Button();
-            this.modifier_rep_btn = new System.Windows.Forms.Button();
             this.suivant_btn = new System.Windows.Forms.Button();
             this.precedent_btn = new System.Windows.Forms.Button();
             this.reponse4_check = new System.Windows.Forms.CheckBox();
@@ -112,7 +111,6 @@ namespace TP5_SalmaEl
             // 
             this.question_panel.Controls.Add(this.supprimer_btn);
             this.question_panel.Controls.Add(this.modifier_qst_btn);
-            this.question_panel.Controls.Add(this.modifier_rep_btn);
             this.question_panel.Controls.Add(this.suivant_btn);
             this.question_panel.Controls.Add(this.precedent_btn);
             this.question_panel.Controls.Add(this.reponse4_check);
@@ -139,12 +137,13 @@ namespace TP5_SalmaEl
             this.supprimer_btn.BackColor = System.Drawing.Color.WhiteSmoke;
             this.supprimer_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.supprimer_btn.ForeColor = System.Drawing.Color.Red;
-            this.supprimer_btn.Location = new System.Drawing.Point(493, 316);
+            this.supprimer_btn.Location = new System.Drawing.Point(493, 254);
             this.supprimer_btn.Name = "supprimer_btn";
             this.supprimer_btn.Size = new System.Drawing.Size(198, 31);
             this.supprimer_btn.TabIndex = 19;
             this.supprimer_btn.Text = "Supprimer";
             this.supprimer_btn.UseVisualStyleBackColor = false;
+            this.supprimer_btn.Click += new System.EventHandler(this.supprimer_btn_Click);
             // 
             // modifier_qst_btn
             // 
@@ -157,18 +156,7 @@ namespace TP5_SalmaEl
             this.modifier_qst_btn.TabIndex = 18;
             this.modifier_qst_btn.Text = "Modifier question";
             this.modifier_qst_btn.UseVisualStyleBackColor = false;
-            // 
-            // modifier_rep_btn
-            // 
-            this.modifier_rep_btn.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.modifier_rep_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.modifier_rep_btn.ForeColor = System.Drawing.Color.Green;
-            this.modifier_rep_btn.Location = new System.Drawing.Point(493, 254);
-            this.modifier_rep_btn.Name = "modifier_rep_btn";
-            this.modifier_rep_btn.Size = new System.Drawing.Size(198, 31);
-            this.modifier_rep_btn.TabIndex = 16;
-            this.modifier_rep_btn.Text = "Modifier reponses";
-            this.modifier_rep_btn.UseVisualStyleBackColor = false;
+            this.modifier_qst_btn.Click += new System.EventHandler(this.modifier_qst_btn_Click);
             // 
             // suivant_btn
             // 
@@ -179,6 +167,7 @@ namespace TP5_SalmaEl
             this.suivant_btn.TabIndex = 15;
             this.suivant_btn.Text = "Suivant";
             this.suivant_btn.UseVisualStyleBackColor = true;
+            this.suivant_btn.Click += new System.EventHandler(this.suivant_btn_Click);
             // 
             // precedent_btn
             // 
@@ -189,6 +178,7 @@ namespace TP5_SalmaEl
             this.precedent_btn.TabIndex = 14;
             this.precedent_btn.Text = "Précédent";
             this.precedent_btn.UseVisualStyleBackColor = true;
+            this.precedent_btn.Click += new System.EventHandler(this.precedent_btn_Click);
             // 
             // reponse4_check
             // 
@@ -339,7 +329,6 @@ namespace TP5_SalmaEl
         private System.Windows.Forms.Panel question_panel;
         private System.Windows.Forms.Button supprimer_btn;
         private System.Windows.Forms.Button modifier_qst_btn;
-        private System.Windows.Forms.Button modifier_rep_btn;
         private System.Windows.Forms.Button suivant_btn;
         private System.Windows.Forms.Button precedent_btn;
         private System.Windows.Forms.CheckBox reponse4_check;
