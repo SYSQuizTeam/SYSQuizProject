@@ -108,6 +108,7 @@ namespace TP5_SalmaEl
             this.prof_t.Name = "prof_t";
             this.prof_t.Size = new System.Drawing.Size(167, 24);
             this.prof_t.TabIndex = 10;
+            this.prof_t.SelectedIndexChanged += new System.EventHandler(this.prof_t_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -180,6 +181,7 @@ namespace TP5_SalmaEl
             this.continuer_btn.TabIndex = 6;
             this.continuer_btn.Text = "Continuer";
             this.continuer_btn.UseVisualStyleBackColor = true;
+            this.continuer_btn.Click += new System.EventHandler(this.continuer_btn_Click);
             // 
             // question_panel
             // 
@@ -213,6 +215,7 @@ namespace TP5_SalmaEl
             this.suivant_btn.TabIndex = 15;
             this.suivant_btn.Text = "Suivant";
             this.suivant_btn.UseVisualStyleBackColor = true;
+            this.suivant_btn.Click += new System.EventHandler(this.suivant_btn_Click);
             // 
             // terminer_btn
             // 
@@ -223,6 +226,7 @@ namespace TP5_SalmaEl
             this.terminer_btn.TabIndex = 14;
             this.terminer_btn.Text = "Terminer";
             this.terminer_btn.UseVisualStyleBackColor = true;
+            this.terminer_btn.Click += new System.EventHandler(this.terminer_btn_Click);
             // 
             // reponse4_check
             // 
