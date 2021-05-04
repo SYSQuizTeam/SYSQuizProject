@@ -100,6 +100,12 @@
     </Compile>
     <Compile Include="Filiere.cs" />
     <Compile Include="FiliereDAO.cs" />
+    <Compile Include="gestionQuizz.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="gestionQuizz.Designer.cs">
+      <DependentUpon>gestionQuizz.cs</DependentUpon>
+    </Compile>
     <Compile Include="MenuE.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ConsultationScores.resx">
       <DependentUpon>ConsultationScores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="gestionQuizz.resx">
+      <DependentUpon>gestionQuizz.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MenuE.resx">
       <DependentUpon>MenuE.cs</DependentUpon>
