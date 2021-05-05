@@ -16,18 +16,21 @@ namespace TP5_SalmaEl
         Guid ID;
         int questionPosition = 1;
         string IdQuizz;
+        string IdProf;
 
-        public quizz()
+        public quizz(string IdProf)
         {
             InitializeComponent();
+            this.IdProf = IdProf;
             question_panel.Visible = false;
-            var profs = (from prof in data.Professeurs
-                         select new { id = prof.ID, nom = prof.nomP }).ToList();
+            var mats = (from m in data.matieres
+                        where m.RespMat == IdProf
+                        select new { id = m.codeMat, nom = m.designation }).ToList();
 
-            prof_t.ValueMember = "id";
-            prof_t.DisplayMember = "nom";
-            prof_t.DataSource = profs;
-            matiere_t.Enabled = false;
+            matiere_t.ValueMember = "id";
+            matiere_t.DisplayMember = "nom";
+
+            matiere_t.DataSource = mats;
         }
 
         private void quizz_Load(object sender, EventArgs e)
@@ -35,35 +38,11 @@ namespace TP5_SalmaEl
 
         }
 
-        private void prof_t_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            if (prof_t.SelectedValue.ToString() != null)
-            {
-                var mats = (from m in data.matieres
-                            where m.RespMat == prof_t.SelectedValue.ToString()
-                            select new { id = m.codeMat, nom = m.designation }).ToList();
-
-                matiere_t.ValueMember = "id";
-                matiere_t.DisplayMember = "nom";
-
-                if (mats.Count != 0)
-                {
-                    matiere_t.DataSource = mats;
-                    matiere_t.Enabled = true;
-                }
-                else
-                {
-                    matiere_t.Enabled = false;
-                    matiere_t.DataSource = null;
-                }
-            }
-
-        }
+       
 
         private void continuer_btn_Click(object sender, EventArgs e)
         {
-            if (nom_t.Text == "" || prof_t.Text == "" || matiere_t.Text == "" || designation_t.Text == "")
+            if (nom_t.Text == "" || matiere_t.Text == "" || designation_t.Text == "")
             {
                 MessageBox.Show("Impossible de continuer, remplissez tous les champs !!", "Erreur");
                 return;
@@ -72,7 +51,7 @@ namespace TP5_SalmaEl
             Quizz newQuizz = new Quizz
             {
                 IDquiz = nom_t.Text,
-                IDprof = prof_t.SelectedValue.ToString(),
+                IDprof = this.IdProf,
                 IDmat = matiere_t.SelectedValue.ToString(),
                 Designation = designation_t.Text
             };
@@ -216,8 +195,13 @@ namespace TP5_SalmaEl
 
         private void button1_Click(object sender, EventArgs e)
         {
-            gestionQuizz gq = new gestionQuizz();
+            gestionQuizz gq = new gestionQuizz(IdProf);
             gq.ShowDialog();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

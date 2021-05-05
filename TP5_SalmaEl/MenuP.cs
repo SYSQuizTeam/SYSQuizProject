@@ -17,11 +17,14 @@ namespace TP5_SalmaEl
 {
     public partial class MenuP : Form
     {
-        public MenuP(string nom,string prenom)
+        string IdProf;
+        public MenuP(string nom,string prenom, string IdProf)
         {
             InitializeComponent();
             label5.Text = nom;
             label6.Text = prenom;
+
+            this.IdProf = IdProf; 
         }
 
         //Hide Professor acceuil Info
@@ -208,7 +211,7 @@ namespace TP5_SalmaEl
 
         private void quizzToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            quizz q = new quizz();
+            quizz q = new quizz(IdProf);
             q.ShowDialog();
         }
     }

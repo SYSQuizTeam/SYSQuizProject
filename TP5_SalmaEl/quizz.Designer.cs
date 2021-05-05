@@ -32,9 +32,7 @@ namespace TP5_SalmaEl
             this.quizz_panel = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.prof_t = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.matiere_t = new System.Windows.Forms.ComboBox();
             this.nom_t = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -66,9 +64,7 @@ namespace TP5_SalmaEl
             // 
             this.quizz_panel.Controls.Add(this.button1);
             this.quizz_panel.Controls.Add(this.label1);
-            this.quizz_panel.Controls.Add(this.prof_t);
             this.quizz_panel.Controls.Add(this.label3);
-            this.quizz_panel.Controls.Add(this.label5);
             this.quizz_panel.Controls.Add(this.matiere_t);
             this.quizz_panel.Controls.Add(this.nom_t);
             this.quizz_panel.Controls.Add(this.label2);
@@ -102,39 +98,20 @@ namespace TP5_SalmaEl
             this.label1.TabIndex = 0;
             this.label1.Text = "Nouveau Quizz :";
             // 
-            // prof_t
-            // 
-            this.prof_t.FormattingEnabled = true;
-            this.prof_t.Location = new System.Drawing.Point(297, 171);
-            this.prof_t.Name = "prof_t";
-            this.prof_t.Size = new System.Drawing.Size(167, 24);
-            this.prof_t.TabIndex = 10;
-            this.prof_t.SelectedIndexChanged += new System.EventHandler(this.prof_t_SelectedIndexChanged);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(171, 220);
+            this.label3.Location = new System.Drawing.Point(169, 177);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(90, 20);
             this.label3.TabIndex = 2;
             this.label3.Text = "Matiere : ";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(148, 175);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(113, 20);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Professeur: ";
-            // 
             // matiere_t
             // 
             this.matiere_t.FormattingEnabled = true;
-            this.matiere_t.Location = new System.Drawing.Point(297, 216);
+            this.matiere_t.Location = new System.Drawing.Point(298, 177);
             this.matiere_t.Name = "matiere_t";
             this.matiere_t.Size = new System.Drawing.Size(167, 24);
             this.matiere_t.TabIndex = 3;
@@ -150,11 +127,12 @@ namespace TP5_SalmaEl
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(132, 265);
+            this.label2.Location = new System.Drawing.Point(132, 226);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(127, 20);
             this.label2.TabIndex = 4;
             this.label2.Text = "Designation : ";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label4
             // 
@@ -168,7 +146,7 @@ namespace TP5_SalmaEl
             // 
             // designation_t
             // 
-            this.designation_t.Location = new System.Drawing.Point(297, 263);
+            this.designation_t.Location = new System.Drawing.Point(298, 226);
             this.designation_t.Name = "designation_t";
             this.designation_t.Size = new System.Drawing.Size(167, 22);
             this.designation_t.TabIndex = 5;
@@ -176,7 +154,7 @@ namespace TP5_SalmaEl
             // continuer_btn
             // 
             this.continuer_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.continuer_btn.Location = new System.Drawing.Point(226, 323);
+            this.continuer_btn.Location = new System.Drawing.Point(226, 298);
             this.continuer_btn.Name = "continuer_btn";
             this.continuer_btn.Size = new System.Drawing.Size(189, 32);
             this.continuer_btn.TabIndex = 6;
@@ -202,7 +180,7 @@ namespace TP5_SalmaEl
             this.question_panel.Controls.Add(this.question_t);
             this.question_panel.Controls.Add(this.question_label);
             this.question_panel.Controls.Add(this.quizz_name_label);
-            this.question_panel.Location = new System.Drawing.Point(65, -1);
+            this.question_panel.Location = new System.Drawing.Point(68, 12);
             this.question_panel.Name = "question_panel";
             this.question_panel.Size = new System.Drawing.Size(649, 439);
             this.question_panel.TabIndex = 17;
@@ -374,9 +352,7 @@ namespace TP5_SalmaEl
         private System.Windows.Forms.Panel quizz_panel;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox prof_t;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox matiere_t;
         private System.Windows.Forms.TextBox nom_t;
         private System.Windows.Forms.Label label2;

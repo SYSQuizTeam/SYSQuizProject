@@ -16,13 +16,17 @@ namespace TP5_SalmaEl
         string quizzName;
         int QuestionPos;
         List<QuestionT> questions;
+        string IdProf;
 
-        public gestionQuizz()
+        public gestionQuizz(string IdProf)
         {
             InitializeComponent();
             question_panel.Visible = false;
 
+            this.IdProf = IdProf;
+
             var LesQuizz = from q in data.Quizz
+                           where q.IDprof == this.IdProf
                            select q.IDquiz;
 
             quizz_t.DataSource = LesQuizz;
@@ -252,6 +256,51 @@ namespace TP5_SalmaEl
                 }
 
             }
+        }
+
+        private void supprQuizz_btn_Click(object sender, EventArgs e)
+        {
+
+            // il faut supprimer tout d'abord les reponses puis les questions puis le quizz
+
+            var quests = from q in data.QuestionT
+                         where q.IDquizz == quizz_t.Text
+                         select q;
+
+            foreach (var quest in quests)
+            {
+
+                var reps = from r in data.ReponseT
+                           where r.IDquestion == quest.IDquestion
+                           select r;
+
+                //suppression des reponses de la question quest
+                data.ReponseT.DeleteAllOnSubmit(reps);
+                data.SubmitChanges();
+
+                //suppression de la question quest
+                data.QuestionT.DeleteOnSubmit(quest);
+                data.SubmitChanges();
+            }
+
+            //suppression du quizz
+
+            var quiz = (from q in data.Quizz
+                        where q.IDquiz == quizz_t.Text
+                        select q).First();
+
+            data.Quizz.DeleteOnSubmit(quiz);
+            data.SubmitChanges();
+
+            MessageBox.Show("Quizz " + quizz_t.Text + " est bien supprimé", "INFO");
+
+            //modifier le combobox qui contient les quizz:
+
+            var LesQuizz = from q in data.Quizz
+                           where q.IDprof == this.IdProf
+                           select q.IDquiz;
+
+            quizz_t.DataSource = LesQuizz;
         }
     }
 }
