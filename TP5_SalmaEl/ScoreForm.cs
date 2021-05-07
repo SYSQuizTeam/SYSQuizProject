@@ -49,5 +49,10 @@ namespace TP5_SalmaEl
         {
 
         }
+
+        private void ScoreBox_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

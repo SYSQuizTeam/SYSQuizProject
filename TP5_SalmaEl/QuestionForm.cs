@@ -85,11 +85,11 @@ namespace TP5_SalmaEl
             else if (radioButton3.Checked == true) statut = Reponses.ElementAt(2).Statut;
             else if (radioButton4.Checked == true) statut = Reponses.ElementAt(3).Statut;
             /*calculate score */
-            if (statut == "true")
+            if (statut == "True")
             {
                 notes.Insert(index, poids);
             }
-            else
+            else if (statut == "False")
             {
                 notes.Insert(index, 0);
             }

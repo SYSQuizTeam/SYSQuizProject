@@ -53,6 +53,7 @@ namespace TP5_SalmaEl
             this.ScoreBox.Size = new System.Drawing.Size(101, 24);
             this.ScoreBox.TabIndex = 2;
             this.ScoreBox.Text = "ScoreBox";
+            this.ScoreBox.Click += new System.EventHandler(this.ScoreBox_Click);
             // 
             // ScoreForm
             // 
