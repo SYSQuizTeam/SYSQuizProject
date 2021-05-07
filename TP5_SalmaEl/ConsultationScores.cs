@@ -70,7 +70,17 @@ namespace TP5_SalmaEl
                     ArrayList Mat = M.select(new RequestCondition("codeModule").Equal(mod.CodeModul));
                     foreach (Matiere MT in Mat)
                     {
-                        MatiereCombo.Items.Add(MT.CodeMat);
+
+                        string matiere = MT.CodeMat;
+                        string mate = "";
+                        ArrayList MatName = new MatiereDAO("matieres").selectmatieresNames(matiere);
+
+                        foreach (string me in MatName)
+                        {
+                            mate += me;
+
+                        }
+                        MatiereCombo.Items.Add(mate);
                     }
                 }
             }
@@ -80,8 +90,16 @@ namespace TP5_SalmaEl
         private void Rechercher_Click(object sender, EventArgs e)
         {
             string code = CodeText.Text;
-            string mat = MatiereCombo.Text;
-            ArrayList L = ND.select(new RequestCondition("codeElev").Equal(code) + "and" + new RequestCondition("codeMat").Equal(mat));
+            string matiere = MatiereCombo.Text;
+            string mate = "";
+            ArrayList MatName = new MatiereDAO("matieres").selectMatiereID(matiere);
+
+            foreach (string me in MatName)
+            {
+                mate += me;
+
+            }
+            ArrayList L = ND.select(new RequestCondition("codeElev").Equal(code) + "and" + new RequestCondition("codeMat").Equal(mate));
             foreach (Note N in L)
             {
                 NoteTexte.Text = N.Note1.ToString();
