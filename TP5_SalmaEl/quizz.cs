@@ -216,11 +216,16 @@ namespace TP5_SalmaEl
 
         private void button1_Click(object sender, EventArgs e)
         {
-            gestionQuizz gq = new gestionQuizz();
+            gestionQuizz gq = new gestionQuizz(prof_t.SelectedValue.ToString());
             gq.ShowDialog();
         }
 
         private void question_t_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void quizz_panel_Paint(object sender, PaintEventArgs e)
         {
 
         }

@@ -211,7 +211,7 @@ namespace TP5_SalmaEl
 
         private void quizzToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            quizz q = new quizz(IdProf);
+            quizz q = new quizz();
             q.ShowDialog();
         }
     }

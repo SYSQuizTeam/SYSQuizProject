@@ -76,17 +76,18 @@ namespace TP5_SalmaEl
             this.quizz_panel.Controls.Add(this.designation_t);
             this.quizz_panel.Controls.Add(this.continuer_btn);
             this.quizz_panel.Location = new System.Drawing.Point(32, 21);
-            this.quizz_panel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.quizz_panel.Margin = new System.Windows.Forms.Padding(2);
             this.quizz_panel.Name = "quizz_panel";
             this.quizz_panel.Size = new System.Drawing.Size(530, 310);
             this.quizz_panel.TabIndex = 12;
+            this.quizz_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.quizz_panel_Paint);
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Location = new System.Drawing.Point(26, 2);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(185, 25);
             this.button1.TabIndex = 16;
@@ -109,7 +110,7 @@ namespace TP5_SalmaEl
             // 
             this.prof_t.FormattingEnabled = true;
             this.prof_t.Location = new System.Drawing.Point(223, 139);
-            this.prof_t.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.prof_t.Margin = new System.Windows.Forms.Padding(2);
             this.prof_t.Name = "prof_t";
             this.prof_t.Size = new System.Drawing.Size(126, 21);
             this.prof_t.TabIndex = 10;
@@ -141,7 +142,7 @@ namespace TP5_SalmaEl
             // 
             this.matiere_t.FormattingEnabled = true;
             this.matiere_t.Location = new System.Drawing.Point(223, 176);
-            this.matiere_t.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.matiere_t.Margin = new System.Windows.Forms.Padding(2);
             this.matiere_t.Name = "matiere_t";
             this.matiere_t.Size = new System.Drawing.Size(126, 21);
             this.matiere_t.TabIndex = 3;
@@ -149,7 +150,7 @@ namespace TP5_SalmaEl
             // nom_t
             // 
             this.nom_t.Location = new System.Drawing.Point(223, 103);
-            this.nom_t.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.nom_t.Margin = new System.Windows.Forms.Padding(2);
             this.nom_t.Name = "nom_t";
             this.nom_t.Size = new System.Drawing.Size(126, 20);
             this.nom_t.TabIndex = 8;
@@ -179,7 +180,7 @@ namespace TP5_SalmaEl
             // designation_t
             // 
             this.designation_t.Location = new System.Drawing.Point(223, 214);
-            this.designation_t.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.designation_t.Margin = new System.Windows.Forms.Padding(2);
             this.designation_t.Name = "designation_t";
             this.designation_t.Size = new System.Drawing.Size(126, 20);
             this.designation_t.TabIndex = 5;
@@ -188,7 +189,7 @@ namespace TP5_SalmaEl
             // 
             this.continuer_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.continuer_btn.Location = new System.Drawing.Point(170, 262);
-            this.continuer_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.continuer_btn.Margin = new System.Windows.Forms.Padding(2);
             this.continuer_btn.Name = "continuer_btn";
             this.continuer_btn.Size = new System.Drawing.Size(142, 26);
             this.continuer_btn.TabIndex = 6;
@@ -215,7 +216,7 @@ namespace TP5_SalmaEl
             this.question_panel.Controls.Add(this.question_label);
             this.question_panel.Controls.Add(this.quizz_name_label);
             this.question_panel.Location = new System.Drawing.Point(49, -1);
-            this.question_panel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.question_panel.Margin = new System.Windows.Forms.Padding(2);
             this.question_panel.Name = "question_panel";
             this.question_panel.Size = new System.Drawing.Size(487, 357);
             this.question_panel.TabIndex = 17;
@@ -224,7 +225,7 @@ namespace TP5_SalmaEl
             // 
             this.suivant_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.suivant_btn.Location = new System.Drawing.Point(328, 317);
-            this.suivant_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.suivant_btn.Margin = new System.Windows.Forms.Padding(2);
             this.suivant_btn.Name = "suivant_btn";
             this.suivant_btn.Size = new System.Drawing.Size(106, 28);
             this.suivant_btn.TabIndex = 15;
@@ -236,7 +237,7 @@ namespace TP5_SalmaEl
             // 
             this.terminer_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.terminer_btn.Location = new System.Drawing.Point(135, 317);
-            this.terminer_btn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.terminer_btn.Margin = new System.Windows.Forms.Padding(2);
             this.terminer_btn.Name = "terminer_btn";
             this.terminer_btn.Size = new System.Drawing.Size(106, 28);
             this.terminer_btn.TabIndex = 14;
@@ -248,7 +249,7 @@ namespace TP5_SalmaEl
             // 
             this.reponse4_check.AutoSize = true;
             this.reponse4_check.Location = new System.Drawing.Point(276, 268);
-            this.reponse4_check.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.reponse4_check.Margin = new System.Windows.Forms.Padding(2);
             this.reponse4_check.Name = "reponse4_check";
             this.reponse4_check.Size = new System.Drawing.Size(15, 14);
             this.reponse4_check.TabIndex = 13;
@@ -258,7 +259,7 @@ namespace TP5_SalmaEl
             // 
             this.reponse3_check.AutoSize = true;
             this.reponse3_check.Location = new System.Drawing.Point(276, 232);
-            this.reponse3_check.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.reponse3_check.Margin = new System.Windows.Forms.Padding(2);
             this.reponse3_check.Name = "reponse3_check";
             this.reponse3_check.Size = new System.Drawing.Size(15, 14);
             this.reponse3_check.TabIndex = 12;
@@ -268,7 +269,7 @@ namespace TP5_SalmaEl
             // 
             this.reponse2_check.AutoSize = true;
             this.reponse2_check.Location = new System.Drawing.Point(276, 197);
-            this.reponse2_check.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.reponse2_check.Margin = new System.Windows.Forms.Padding(2);
             this.reponse2_check.Name = "reponse2_check";
             this.reponse2_check.Size = new System.Drawing.Size(15, 14);
             this.reponse2_check.TabIndex = 11;
@@ -278,7 +279,7 @@ namespace TP5_SalmaEl
             // 
             this.reponse1_check.AutoSize = true;
             this.reponse1_check.Location = new System.Drawing.Point(276, 163);
-            this.reponse1_check.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.reponse1_check.Margin = new System.Windows.Forms.Padding(2);
             this.reponse1_check.Name = "reponse1_check";
             this.reponse1_check.Size = new System.Drawing.Size(15, 14);
             this.reponse1_check.TabIndex = 10;
@@ -287,7 +288,7 @@ namespace TP5_SalmaEl
             // reponse4_t
             // 
             this.reponse4_t.Location = new System.Drawing.Point(53, 265);
-            this.reponse4_t.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.reponse4_t.Margin = new System.Windows.Forms.Padding(2);
             this.reponse4_t.Name = "reponse4_t";
             this.reponse4_t.Size = new System.Drawing.Size(179, 20);
             this.reponse4_t.TabIndex = 9;
@@ -296,7 +297,7 @@ namespace TP5_SalmaEl
             // reponse3_t
             // 
             this.reponse3_t.Location = new System.Drawing.Point(53, 229);
-            this.reponse3_t.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.reponse3_t.Margin = new System.Windows.Forms.Padding(2);
             this.reponse3_t.Name = "reponse3_t";
             this.reponse3_t.Size = new System.Drawing.Size(179, 20);
             this.reponse3_t.TabIndex = 8;
@@ -305,7 +306,7 @@ namespace TP5_SalmaEl
             // reponse2_t
             // 
             this.reponse2_t.Location = new System.Drawing.Point(53, 194);
-            this.reponse2_t.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.reponse2_t.Margin = new System.Windows.Forms.Padding(2);
             this.reponse2_t.Name = "reponse2_t";
             this.reponse2_t.Size = new System.Drawing.Size(179, 20);
             this.reponse2_t.TabIndex = 7;
@@ -314,7 +315,7 @@ namespace TP5_SalmaEl
             // reponse1_t
             // 
             this.reponse1_t.Location = new System.Drawing.Point(53, 160);
-            this.reponse1_t.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.reponse1_t.Margin = new System.Windows.Forms.Padding(2);
             this.reponse1_t.Name = "reponse1_t";
             this.reponse1_t.Size = new System.Drawing.Size(179, 20);
             this.reponse1_t.TabIndex = 6;
@@ -323,7 +324,7 @@ namespace TP5_SalmaEl
             // poids_t
             // 
             this.poids_t.Location = new System.Drawing.Point(384, 75);
-            this.poids_t.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.poids_t.Margin = new System.Windows.Forms.Padding(2);
             this.poids_t.Name = "poids_t";
             this.poids_t.Size = new System.Drawing.Size(52, 20);
             this.poids_t.TabIndex = 5;
@@ -353,7 +354,7 @@ namespace TP5_SalmaEl
             // question_t
             // 
             this.question_t.Location = new System.Drawing.Point(112, 73);
-            this.question_t.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.question_t.Margin = new System.Windows.Forms.Padding(2);
             this.question_t.Name = "question_t";
             this.question_t.Size = new System.Drawing.Size(179, 20);
             this.question_t.TabIndex = 2;
@@ -388,7 +389,7 @@ namespace TP5_SalmaEl
             this.ClientSize = new System.Drawing.Size(600, 366);
             this.Controls.Add(this.question_panel);
             this.Controls.Add(this.quizz_panel);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "quizz";
             this.Text = "quizz";
             this.Load += new System.EventHandler(this.quizz_Load);
