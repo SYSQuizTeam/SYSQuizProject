@@ -53,19 +53,21 @@ namespace TP5_SalmaEl
             this.question_t = new System.Windows.Forms.TextBox();
             this.question_label = new System.Windows.Forms.Label();
             this.quizz_name_label = new System.Windows.Forms.Label();
+            this.supprQuizz_btn = new System.Windows.Forms.Button();
             this.gestion_quizz_panel.SuspendLayout();
             this.question_panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // gestion_quizz_panel
             // 
+            this.gestion_quizz_panel.Controls.Add(this.supprQuizz_btn);
             this.gestion_quizz_panel.Controls.Add(this.continuer_btn);
             this.gestion_quizz_panel.Controls.Add(this.quizz_t);
             this.gestion_quizz_panel.Controls.Add(this.label2);
             this.gestion_quizz_panel.Controls.Add(this.label1);
-            this.gestion_quizz_panel.Location = new System.Drawing.Point(24, 36);
+            this.gestion_quizz_panel.Location = new System.Drawing.Point(24, 48);
             this.gestion_quizz_panel.Name = "gestion_quizz_panel";
-            this.gestion_quizz_panel.Size = new System.Drawing.Size(734, 170);
+            this.gestion_quizz_panel.Size = new System.Drawing.Size(734, 235);
             this.gestion_quizz_panel.TabIndex = 1;
             // 
             // continuer_btn
@@ -127,9 +129,9 @@ namespace TP5_SalmaEl
             this.question_panel.Controls.Add(this.question_t);
             this.question_panel.Controls.Add(this.question_label);
             this.question_panel.Controls.Add(this.quizz_name_label);
-            this.question_panel.Location = new System.Drawing.Point(43, 2);
+            this.question_panel.Location = new System.Drawing.Point(27, 2);
             this.question_panel.Name = "question_panel";
-            this.question_panel.Size = new System.Drawing.Size(712, 445);
+            this.question_panel.Size = new System.Drawing.Size(715, 445);
             this.question_panel.TabIndex = 14;
             // 
             // supprimer_btn
@@ -302,6 +304,18 @@ namespace TP5_SalmaEl
             this.quizz_name_label.TabIndex = 0;
             this.quizz_name_label.Text = "Questions du quizz : ";
             // 
+            // supprQuizz_btn
+            // 
+            this.supprQuizz_btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.supprQuizz_btn.ForeColor = System.Drawing.Color.Red;
+            this.supprQuizz_btn.Location = new System.Drawing.Point(489, 153);
+            this.supprQuizz_btn.Name = "supprQuizz_btn";
+            this.supprQuizz_btn.Size = new System.Drawing.Size(160, 33);
+            this.supprQuizz_btn.TabIndex = 5;
+            this.supprQuizz_btn.Text = "Supprimer";
+            this.supprQuizz_btn.UseVisualStyleBackColor = true;
+            this.supprQuizz_btn.Click += new System.EventHandler(this.supprQuizz_btn_Click);
+            // 
             // gestionQuizz
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -345,5 +359,6 @@ namespace TP5_SalmaEl
         private System.Windows.Forms.TextBox question_t;
         private System.Windows.Forms.Label question_label;
         private System.Windows.Forms.Label quizz_name_label;
+        private System.Windows.Forms.Button supprQuizz_btn;
     }
 }

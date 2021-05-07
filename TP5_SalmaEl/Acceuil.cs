@@ -21,7 +21,6 @@ namespace TP5_SalmaEl
         {
 
 
-
             //recuperer le code de l'etudiant ou du professeur
             string code = CodeTxt.Text;
 
@@ -60,7 +59,8 @@ namespace TP5_SalmaEl
 
                 string nom = (from u in linqDB.Professeurs where u.ID == code select u.nomP).Single();
                 string prenom = (from u in linqDB.Professeurs where u.ID == code select u.prenomP).Single();
-               
+                string IdProf = (from u in linqDB.Professeurs where u.ID == code select u.ID).Single();
+
 
                 // Open Teacher View
 
@@ -76,7 +76,7 @@ namespace TP5_SalmaEl
 
                  if (IsOpen == false)
                  {*/
-                MenuP f2 = new MenuP(nom,prenom);
+                MenuP f2 = new MenuP(nom,prenom, IdProf);
                   //  f2.MdiParent = this;
                     f2.Show();
                 //}
