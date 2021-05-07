@@ -7,8 +7,8 @@
       <Column Name="prenom" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="code_Fil" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
       <Column Name="niveau" Type="System.String" DbType="NVarChar(21)" CanBeNull="true" />
-      <Association Name="eleves_moyennes" Member="moyennes" ThisKey="codeElev" OtherKey="codeElev" Type="moyennes" />
       <Association Name="eleves_notes2021" Member="notes2021" ThisKey="codeElev" OtherKey="codeElev" Type="notes2021" />
+      <Association Name="eleves_moyennes" Member="moyennes" ThisKey="codeElev" OtherKey="codeElev" Type="moyennes" />
       <Association Name="filiere_eleves" Member="filiere" ThisKey="code_Fil" OtherKey="codeF" Type="filiere" IsForeignKey="true" />
     </Type>
   </Table>
@@ -48,6 +48,16 @@
       <Association Name="Professeurs_module" Member="Professeurs" ThisKey="Responsable" OtherKey="ID" Type="Professeurs" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.notes2021" Member="notes2021">
+    <Type Name="notes2021">
+      <Column Name="codeElev" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="codeMat" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="note" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="id" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="eleves_notes2021" Member="eleves" ThisKey="codeElev" OtherKey="codeElev" Type="eleves" IsForeignKey="true" />
+      <Association Name="matieres_notes2021" Member="matieres" ThisKey="codeMat" OtherKey="codeMat" Type="matieres" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.moyennes" Member="moyennes">
     <Type Name="moyennes">
       <Column Name="codeElev" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
@@ -58,16 +68,6 @@
       <Association Name="eleves_moyennes" Member="eleves" ThisKey="codeElev" OtherKey="codeElev" Type="eleves" IsForeignKey="true" />
       <Association Name="filiere_moyennes" Member="filiere" ThisKey="codeF" OtherKey="codeF" Type="filiere" IsForeignKey="true" />
       <Association Name="Quizz_moyennes" Member="Quizz" ThisKey="IDquiz" OtherKey="IDquiz" Type="Quizz" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.notes2021" Member="notes2021">
-    <Type Name="notes2021">
-      <Column Name="codeElev" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="codeMat" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="note" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="id" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="eleves_notes2021" Member="eleves" ThisKey="codeElev" OtherKey="codeElev" Type="eleves" IsForeignKey="true" />
-      <Association Name="matieres_notes2021" Member="matieres" ThisKey="codeMat" OtherKey="codeMat" Type="matieres" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Professeurs" Member="Professeurs">

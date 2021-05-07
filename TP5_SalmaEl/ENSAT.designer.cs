@@ -42,12 +42,12 @@ namespace TP5_SalmaEl
     partial void Insertmodule(module instance);
     partial void Updatemodule(module instance);
     partial void Deletemodule(module instance);
-    partial void Insertmoyennes(moyennes instance);
-    partial void Updatemoyennes(moyennes instance);
-    partial void Deletemoyennes(moyennes instance);
     partial void Insertnotes2021(notes2021 instance);
     partial void Updatenotes2021(notes2021 instance);
     partial void Deletenotes2021(notes2021 instance);
+    partial void Insertmoyennes(moyennes instance);
+    partial void Updatemoyennes(moyennes instance);
+    partial void Deletemoyennes(moyennes instance);
     partial void InsertProfesseurs(Professeurs instance);
     partial void UpdateProfesseurs(Professeurs instance);
     partial void DeleteProfesseurs(Professeurs instance);
@@ -124,19 +124,19 @@ namespace TP5_SalmaEl
 			}
 		}
 		
-		public System.Data.Linq.Table<moyennes> moyennes
-		{
-			get
-			{
-				return this.GetTable<moyennes>();
-			}
-		}
-		
 		public System.Data.Linq.Table<notes2021> notes2021
 		{
 			get
 			{
 				return this.GetTable<notes2021>();
+			}
+		}
+		
+		public System.Data.Linq.Table<moyennes> moyennes
+		{
+			get
+			{
+				return this.GetTable<moyennes>();
 			}
 		}
 		
@@ -189,9 +189,9 @@ namespace TP5_SalmaEl
 		
 		private string _niveau;
 		
-		private EntitySet<moyennes> _moyennes;
-		
 		private EntitySet<notes2021> _notes2021;
+		
+		private EntitySet<moyennes> _moyennes;
 		
 		private EntityRef<filiere> _filiere;
 		
@@ -213,8 +213,8 @@ namespace TP5_SalmaEl
 		
 		public eleves()
 		{
-			this._moyennes = new EntitySet<moyennes>(new Action<moyennes>(this.attach_moyennes), new Action<moyennes>(this.detach_moyennes));
 			this._notes2021 = new EntitySet<notes2021>(new Action<notes2021>(this.attach_notes2021), new Action<notes2021>(this.detach_notes2021));
+			this._moyennes = new EntitySet<moyennes>(new Action<moyennes>(this.attach_moyennes), new Action<moyennes>(this.detach_moyennes));
 			this._filiere = default(EntityRef<filiere>);
 			OnCreated();
 		}
@@ -323,19 +323,6 @@ namespace TP5_SalmaEl
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="eleves_moyennes", Storage="_moyennes", ThisKey="codeElev", OtherKey="codeElev")]
-		public EntitySet<moyennes> moyennes
-		{
-			get
-			{
-				return this._moyennes;
-			}
-			set
-			{
-				this._moyennes.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="eleves_notes2021", Storage="_notes2021", ThisKey="codeElev", OtherKey="codeElev")]
 		public EntitySet<notes2021> notes2021
 		{
@@ -346,6 +333,19 @@ namespace TP5_SalmaEl
 			set
 			{
 				this._notes2021.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="eleves_moyennes", Storage="_moyennes", ThisKey="codeElev", OtherKey="codeElev")]
+		public EntitySet<moyennes> moyennes
+		{
+			get
+			{
+				return this._moyennes;
+			}
+			set
+			{
+				this._moyennes.Assign(value);
 			}
 		}
 		
@@ -403,18 +403,6 @@ namespace TP5_SalmaEl
 			}
 		}
 		
-		private void attach_moyennes(moyennes entity)
-		{
-			this.SendPropertyChanging();
-			entity.eleves = this;
-		}
-		
-		private void detach_moyennes(moyennes entity)
-		{
-			this.SendPropertyChanging();
-			entity.eleves = null;
-		}
-		
 		private void attach_notes2021(notes2021 entity)
 		{
 			this.SendPropertyChanging();
@@ -422,6 +410,18 @@ namespace TP5_SalmaEl
 		}
 		
 		private void detach_notes2021(notes2021 entity)
+		{
+			this.SendPropertyChanging();
+			entity.eleves = null;
+		}
+		
+		private void attach_moyennes(moyennes entity)
+		{
+			this.SendPropertyChanging();
+			entity.eleves = this;
+		}
+		
+		private void detach_moyennes(moyennes entity)
 		{
 			this.SendPropertyChanging();
 			entity.eleves = null;
@@ -1210,6 +1210,222 @@ namespace TP5_SalmaEl
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.notes2021")]
+	public partial class notes2021 : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _codeElev;
+		
+		private string _codeMat;
+		
+		private System.Nullable<double> _note;
+		
+		private string _id;
+		
+		private EntityRef<eleves> _eleves;
+		
+		private EntityRef<matieres> _matieres;
+		
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OncodeElevChanging(string value);
+    partial void OncodeElevChanged();
+    partial void OncodeMatChanging(string value);
+    partial void OncodeMatChanged();
+    partial void OnnoteChanging(System.Nullable<double> value);
+    partial void OnnoteChanged();
+    partial void OnidChanging(string value);
+    partial void OnidChanged();
+    #endregion
+		
+		public notes2021()
+		{
+			this._eleves = default(EntityRef<eleves>);
+			this._matieres = default(EntityRef<matieres>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_codeElev", DbType="NVarChar(20)")]
+		public string codeElev
+		{
+			get
+			{
+				return this._codeElev;
+			}
+			set
+			{
+				if ((this._codeElev != value))
+				{
+					if (this._eleves.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OncodeElevChanging(value);
+					this.SendPropertyChanging();
+					this._codeElev = value;
+					this.SendPropertyChanged("codeElev");
+					this.OncodeElevChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_codeMat", DbType="NVarChar(20)")]
+		public string codeMat
+		{
+			get
+			{
+				return this._codeMat;
+			}
+			set
+			{
+				if ((this._codeMat != value))
+				{
+					if (this._matieres.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OncodeMatChanging(value);
+					this.SendPropertyChanging();
+					this._codeMat = value;
+					this.SendPropertyChanged("codeMat");
+					this.OncodeMatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_note", DbType="Float")]
+		public System.Nullable<double> note
+		{
+			get
+			{
+				return this._note;
+			}
+			set
+			{
+				if ((this._note != value))
+				{
+					this.OnnoteChanging(value);
+					this.SendPropertyChanging();
+					this._note = value;
+					this.SendPropertyChanged("note");
+					this.OnnoteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="NVarChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="eleves_notes2021", Storage="_eleves", ThisKey="codeElev", OtherKey="codeElev", IsForeignKey=true)]
+		public eleves eleves
+		{
+			get
+			{
+				return this._eleves.Entity;
+			}
+			set
+			{
+				eleves previousValue = this._eleves.Entity;
+				if (((previousValue != value) 
+							|| (this._eleves.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._eleves.Entity = null;
+						previousValue.notes2021.Remove(this);
+					}
+					this._eleves.Entity = value;
+					if ((value != null))
+					{
+						value.notes2021.Add(this);
+						this._codeElev = value.codeElev;
+					}
+					else
+					{
+						this._codeElev = default(string);
+					}
+					this.SendPropertyChanged("eleves");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="matieres_notes2021", Storage="_matieres", ThisKey="codeMat", OtherKey="codeMat", IsForeignKey=true)]
+		public matieres matieres
+		{
+			get
+			{
+				return this._matieres.Entity;
+			}
+			set
+			{
+				matieres previousValue = this._matieres.Entity;
+				if (((previousValue != value) 
+							|| (this._matieres.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._matieres.Entity = null;
+						previousValue.notes2021.Remove(this);
+					}
+					this._matieres.Entity = value;
+					if ((value != null))
+					{
+						value.notes2021.Add(this);
+						this._codeMat = value.codeMat;
+					}
+					else
+					{
+						this._codeMat = default(string);
+					}
+					this.SendPropertyChanged("matieres");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.moyennes")]
 	public partial class moyennes : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -1466,222 +1682,6 @@ namespace TP5_SalmaEl
 						this._IDquiz = default(string);
 					}
 					this.SendPropertyChanged("Quizz");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.notes2021")]
-	public partial class notes2021 : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _codeElev;
-		
-		private string _codeMat;
-		
-		private System.Nullable<double> _note;
-		
-		private string _id;
-		
-		private EntityRef<eleves> _eleves;
-		
-		private EntityRef<matieres> _matieres;
-		
-    #region Définitions de méthodes d'extensibilité
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OncodeElevChanging(string value);
-    partial void OncodeElevChanged();
-    partial void OncodeMatChanging(string value);
-    partial void OncodeMatChanged();
-    partial void OnnoteChanging(System.Nullable<double> value);
-    partial void OnnoteChanged();
-    partial void OnidChanging(string value);
-    partial void OnidChanged();
-    #endregion
-		
-		public notes2021()
-		{
-			this._eleves = default(EntityRef<eleves>);
-			this._matieres = default(EntityRef<matieres>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_codeElev", DbType="NVarChar(20)")]
-		public string codeElev
-		{
-			get
-			{
-				return this._codeElev;
-			}
-			set
-			{
-				if ((this._codeElev != value))
-				{
-					if (this._eleves.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OncodeElevChanging(value);
-					this.SendPropertyChanging();
-					this._codeElev = value;
-					this.SendPropertyChanged("codeElev");
-					this.OncodeElevChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_codeMat", DbType="NVarChar(20)")]
-		public string codeMat
-		{
-			get
-			{
-				return this._codeMat;
-			}
-			set
-			{
-				if ((this._codeMat != value))
-				{
-					if (this._matieres.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OncodeMatChanging(value);
-					this.SendPropertyChanging();
-					this._codeMat = value;
-					this.SendPropertyChanged("codeMat");
-					this.OncodeMatChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_note", DbType="Float")]
-		public System.Nullable<double> note
-		{
-			get
-			{
-				return this._note;
-			}
-			set
-			{
-				if ((this._note != value))
-				{
-					this.OnnoteChanging(value);
-					this.SendPropertyChanging();
-					this._note = value;
-					this.SendPropertyChanged("note");
-					this.OnnoteChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="NVarChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="eleves_notes2021", Storage="_eleves", ThisKey="codeElev", OtherKey="codeElev", IsForeignKey=true)]
-		public eleves eleves
-		{
-			get
-			{
-				return this._eleves.Entity;
-			}
-			set
-			{
-				eleves previousValue = this._eleves.Entity;
-				if (((previousValue != value) 
-							|| (this._eleves.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._eleves.Entity = null;
-						previousValue.notes2021.Remove(this);
-					}
-					this._eleves.Entity = value;
-					if ((value != null))
-					{
-						value.notes2021.Add(this);
-						this._codeElev = value.codeElev;
-					}
-					else
-					{
-						this._codeElev = default(string);
-					}
-					this.SendPropertyChanged("eleves");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="matieres_notes2021", Storage="_matieres", ThisKey="codeMat", OtherKey="codeMat", IsForeignKey=true)]
-		public matieres matieres
-		{
-			get
-			{
-				return this._matieres.Entity;
-			}
-			set
-			{
-				matieres previousValue = this._matieres.Entity;
-				if (((previousValue != value) 
-							|| (this._matieres.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._matieres.Entity = null;
-						previousValue.notes2021.Remove(this);
-					}
-					this._matieres.Entity = value;
-					if ((value != null))
-					{
-						value.notes2021.Add(this);
-						this._codeMat = value.codeMat;
-					}
-					else
-					{
-						this._codeMat = default(string);
-					}
-					this.SendPropertyChanged("matieres");
 				}
 			}
 		}
