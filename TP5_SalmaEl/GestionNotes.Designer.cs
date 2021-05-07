@@ -39,6 +39,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.NoteIdT = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // Rechercher
@@ -149,11 +151,30 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "Code Eleve";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(48, 24);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(70, 20);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "ID note";
+            // 
+            // NoteIdT
+            // 
+            this.NoteIdT.Location = new System.Drawing.Point(145, 26);
+            this.NoteIdT.Name = "NoteIdT";
+            this.NoteIdT.Size = new System.Drawing.Size(154, 20);
+            this.NoteIdT.TabIndex = 23;
+            // 
             // GestionNotes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 237);
+            this.Controls.Add(this.NoteIdT);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.Rechercher);
             this.Controls.Add(this.Supprimer);
             this.Controls.Add(this.Modifier);
@@ -186,5 +207,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox NoteIdT;
     }
 }

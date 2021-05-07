@@ -74,6 +74,34 @@ namespace TP5_SalmaEl
             foreach (var D in R)
             {
 
+                Modules.Add(D["Designation"]);
+
+            }
+            return Modules;
+
+        }
+
+        public ArrayList selectmodulesNames(string id)
+        {
+            List<Dictionary<string, string>> R = base.select(new RequestCondition("codeModul").Equal(id));
+            ArrayList Modules = new ArrayList();
+            foreach (var D in R)
+            {
+
+                Modules.Add(D["Designation"]);
+
+            }
+            return Modules;
+
+        }
+
+        public ArrayList selectModulID(string name) // pour select ID of Modul of the NAme Selected
+        {
+            List<Dictionary<string, string>> R = base.select(new RequestCondition("Designation").Equal(name));
+            ArrayList Modules = new ArrayList();
+            foreach (var D in R)
+            {
+
                 Modules.Add(D["codeModul"]);
 
             }
@@ -81,18 +109,6 @@ namespace TP5_SalmaEl
 
         }
 
-        public ArrayList selectModulID(string nom)  // pour select ID of professeur of the NAme Selected
-        {
-            List<Dictionary<string, string>> R = base.select(new RequestCondition("Designation").Equal(nom));
-            ArrayList Modul = new ArrayList();
-            foreach (var D in R)
-            {
-
-                Modul.Add(D["ID"]);
-
-            }
-            return Modul;
-
-        }
+       
     }
 }

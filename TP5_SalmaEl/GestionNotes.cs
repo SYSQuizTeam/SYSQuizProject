@@ -76,7 +76,17 @@ namespace TP5_SalmaEl
                     ArrayList Mat = M.select(new RequestCondition("codeModule").Equal(mod.CodeModul));
                     foreach (Matiere MT in Mat)
                     {
-                        MatiereCombo.Items.Add(MT.CodeMat);
+                        string matiere = MT.CodeMat;
+                        string mate = "";
+                        ArrayList MatName = new MatiereDAO("matieres").selectmatieresNames(matiere);
+
+                        foreach (string me in MatName)
+                        {
+                            mate += me;
+
+                        }
+                        MatiereCombo.Items.Add(mate);
+
                     }
                 }
             }
@@ -88,6 +98,7 @@ namespace TP5_SalmaEl
         {
             MatiereCombo.Text = "";
             NoteTexte.Text = "";
+            NoteIdT.Text = "";
         }
 
 
@@ -149,13 +160,24 @@ namespace TP5_SalmaEl
         
         public void AJOUTER()
         {
+
             string code = CodeText.Text;
-            string mat = MatiereCombo.Text;
+            string matiere = MatiereCombo.Text;
+            string mate = "";
+            ArrayList MatName = new MatiereDAO("matieres").selectMatiereID(matiere);
+
+            foreach (string me in MatName)
+            {
+                mate += me;
+
+            }
+
             float note = float.Parse(NoteTexte.Text);
+            string idN = NoteIdT.Text;
 
 
 
-            if (code != " " && mat != " " && note >= 0 && note <= 20)
+            if (idN != " " && code != " " && matiere != " " && note >= 0 && note <= 20)
             {
                 try
                 {
@@ -163,8 +185,9 @@ namespace TP5_SalmaEl
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "NT_AJOUT";
                     cmd.Parameters.Add("@CodeElev", SqlDbType.NVarChar,20).Value = code;
-                    cmd.Parameters.Add("@CodeMat", SqlDbType.NVarChar,20).Value = mat;
+                    cmd.Parameters.Add("@CodeMat", SqlDbType.NVarChar,20).Value = mate;
                     cmd.Parameters.Add("@Note", SqlDbType.Float).Value = note;
+                    cmd.Parameters.Add("@idNote", SqlDbType.NVarChar, 10).Value = idN;
 
                     cmd.Connection = con;
                     cmd.ExecuteNonQuery();
@@ -224,11 +247,20 @@ namespace TP5_SalmaEl
         public void MODIFIER()
         {
             string code = CodeText.Text;
-            string mat = MatiereCombo.Text;
+            string matiere = MatiereCombo.Text;
+            string mate = "";
+            ArrayList MatName = new MatiereDAO("matieres").selectMatiereID(matiere);
+
+            foreach (string me in MatName)
+            {
+                mate += me;
+
+            }
             float note = float.Parse(NoteTexte.Text);
+     
 
 
-            if(code != " " && mat != " " && note >= 0 && note <= 20)
+            if (code != " " && matiere != " " && note >= 0 && note <= 20)
             {
                 try
                 {
@@ -237,8 +269,9 @@ namespace TP5_SalmaEl
                     cmd.CommandText = "NT_UPDATE";
                     cmd.Parameters.Add("@Note", SqlDbType.Float).Value = note;
                     cmd.Parameters.Add("@CodeElev", SqlDbType.NVarChar, 20).Value = code;
-                    cmd.Parameters.Add("@CodeMat", SqlDbType.NVarChar, 20).Value = mat;
-                    
+                    cmd.Parameters.Add("@CodeMat", SqlDbType.NVarChar, 20).Value = mate;
+
+
 
                     cmd.Connection = con;
                     cmd.ExecuteNonQuery();
@@ -295,7 +328,15 @@ namespace TP5_SalmaEl
         public void SUPPRIMER()
         {
             string code = CodeText.Text;
-            string mat = MatiereCombo.Text;
+            string matiere = MatiereCombo.Text;
+            string mate = "";
+            ArrayList MatName = new MatiereDAO("matieres").selectMatiereID(matiere);
+
+            foreach (string me in MatName)
+            {
+                mate += me;
+
+            }
             float note = float.Parse(NoteTexte.Text);
 
 
@@ -303,7 +344,7 @@ namespace TP5_SalmaEl
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.CommandText = "NT_DELETE";
                     cmd.Parameters.Add("@CodeElev", SqlDbType.NVarChar, 20).Value = code;
-                    cmd.Parameters.Add("@CodeMat", SqlDbType.NVarChar, 20).Value = mat;
+                    cmd.Parameters.Add("@CodeMat", SqlDbType.NVarChar, 20).Value = mate;
                   
                     cmd.Connection = con;
                     cmd.ExecuteNonQuery();
@@ -322,8 +363,16 @@ namespace TP5_SalmaEl
         private void Rechercher_Click(object sender, EventArgs e)
         {
             string code = CodeText.Text;
-            string mat = MatiereCombo.Text;
-            ArrayList L = ND.select(new RequestCondition("codeElev").Equal(code) + "and" + new RequestCondition("codeMat").Equal(mat));
+            string matiere = MatiereCombo.Text;
+            string mate = "";
+            ArrayList MatName = new MatiereDAO("matieres").selectMatiereID(matiere);
+
+            foreach (string me in MatName)
+            {
+                mate += me;
+
+            }
+            ArrayList L = ND.select(new RequestCondition("codeElev").Equal(code) + "and" + new RequestCondition("codeMat").Equal(mate));
             foreach (Note N in L)
             {
                 NoteTexte.Text = N.Note1.ToString();

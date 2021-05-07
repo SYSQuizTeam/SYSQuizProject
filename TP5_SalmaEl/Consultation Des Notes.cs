@@ -162,14 +162,24 @@ namespace TP5_SalmaEl
         }
         private void loadM(String niv)
         {
+           
             ArrayList M = MD.select(new RequestCondition("niveau").Equal(niv));
             foreach (Module m in M)
             {
                 ArrayList MAT = MTD.select(new RequestCondition("codeModule").Equal(m.CodeModul));
                 foreach (Matiere mat in MAT)
                 {
-                    MatiereCombo.Items.Add(mat.CodeMat);
-                    
+                    string matiere = mat.CodeMat;
+                    string mate = "";
+                    ArrayList MatName = new MatiereDAO("matieres").selectmatieresNames(matiere);
+
+                    foreach (string me in MatName)
+                    {
+                         mate += me;
+                       
+                    }
+                    MatiereCombo.Items.Add(mate);
+
                 }
             }
         }
@@ -231,7 +241,16 @@ namespace TP5_SalmaEl
 
         private void RechercherBtn_Click(object sender, EventArgs e)
         {
-            FillTable(FiliereCombo.Text, NiveauCombo.Text, MatiereCombo.Text);
+            string matiere = MatiereCombo.Text;
+            string mate = "";
+            ArrayList MatName = new MatiereDAO("matieres").selectMatiereID(matiere);
+
+            foreach (string me in MatName)
+            {
+                mate += me;
+
+            }
+            FillTable(FiliereCombo.Text, NiveauCombo.Text, mate);
         }
 
         private void MatiereCombo_SelectedIndexChanged(object sender, EventArgs e)

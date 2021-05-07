@@ -219,5 +219,10 @@ namespace TP5_SalmaEl
             gestionQuizz gq = new gestionQuizz();
             gq.ShowDialog();
         }
+
+        private void question_t_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

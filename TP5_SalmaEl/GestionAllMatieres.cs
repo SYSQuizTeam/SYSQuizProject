@@ -45,6 +45,7 @@ namespace TP5_SalmaEl
             //.selectfiliere();
             foreach (string m in LM)
             {
+               
                 ModulText.Items.Add(m);
             }
         }
@@ -104,8 +105,13 @@ namespace TP5_SalmaEl
                     DataRow row = table.NewRow();
                     row[0] = element.CodeMat;
                     row[1] = element.Designation;
+                  
+
                     row[2] = element.Coeff;
-                    row[3] = element.CodeModul;
+
+                    ArrayList ModulName = new ModuleDAO("module").selectmodulesNames(element.CodeModul);
+                    row[3] = ModulName[0];
+
                     ArrayList LPrName = new ProfesseurDAO("Professeurs").selectProfsName(element.RespMat1);
 
                     row[4] = LPrName[0];
@@ -120,9 +126,16 @@ namespace TP5_SalmaEl
                 {
                     DataRow row = table.NewRow();
                     row[0] = element.CodeMat;
+
                     row[1] = element.Designation;
+
+
                     row[2] = element.Coeff;
-                    row[3] = element.CodeModul;
+
+                    ArrayList ModulName = new ModuleDAO("module").selectmodulesNames(element.CodeModul);
+                    row[3] = ModulName[0];
+
+
                     ArrayList LPrName = new ProfesseurDAO("Professeurs").selectProfsName(element.RespMat1);
 
                     row[4] = LPrName[0];
@@ -187,9 +200,18 @@ namespace TP5_SalmaEl
             }
             if (checkBox4.Checked)
             {
+                string modulName = ModulText.Text;
+                string modul = "";
+                ArrayList ModName = new ModuleDAO("module").selectModulID(modulName);
+
+                foreach (string m in ModName)
+                {
+                    modul += m;
+                }
+
                 if (Conditions != "")
                     Conditions += " and ";
-                Conditions += new RequestCondition("codeModule").Equal(ModulText.Text);
+                Conditions += new RequestCondition("codeModule").Equal(modul);
 
             }
             if (checkBox5.Checked)
@@ -230,6 +252,7 @@ namespace TP5_SalmaEl
             string Des = desMatT.Text;
             double pds = float.Parse(CoeffText.Text);
             string module = ModulText.Text;
+            string mod = "";
             string respName = ResponsableCombo.Text;
             string resp = "";
             ArrayList LPrName = new ProfesseurDAO("Professeurs").selectProfsID(respName);
@@ -239,11 +262,18 @@ namespace TP5_SalmaEl
                 resp += p;
             }
 
+            ArrayList ModName = new ModuleDAO("module").selectModulID(module);
+
+            foreach (string m in ModName)
+            {
+                mod += m;
+            }
+
             if (cod != "" && Des != "")
             {
                 try
                 {
-                    Matiere E = new Matiere(cod, Des, pds, module,resp);//(string CM, string D, double P, string CMD)
+                    Matiere E = new Matiere(cod, Des, pds, mod,resp);//(string CM, string D, double P, string CMD)
                     MT.insert(E);
                     MessageBox.Show("Matiere bien ajouté");
                     FillTable("");
@@ -266,6 +296,7 @@ namespace TP5_SalmaEl
             string Des = desMatT.Text;
             double pds = float.Parse(CoeffText.Text);
             string module = ModulText.Text;
+            string mod = "";
             string respName = ResponsableCombo.Text;
             string resp = "";
             ArrayList LPrName = new ProfesseurDAO("Professeurs").selectProfsID(respName);
@@ -275,9 +306,18 @@ namespace TP5_SalmaEl
                 resp += p;
             }
 
+
+            ArrayList ModName = new ModuleDAO("module").selectModulID(module);
+
+            foreach (string m in ModName)
+            {
+                mod += m;
+            }
+
+
             if ( cod != null && Des != null && pds != 0 && module != null && resp != null)
                 {
-                    Matiere E = new Matiere(cod, Des, pds, module, resp);
+                    Matiere E = new Matiere(cod, Des, pds, mod, resp);
                     MT.update(E, new RequestCondition("codeMat").Equal(cod));
                     MessageBox.Show("Matiere bien modifié");
                     FillTable("");
@@ -302,6 +342,7 @@ namespace TP5_SalmaEl
 
             MT.delete(new RequestCondition("codeMat").Equal(cod));
             FillTable("");
+            MessageBox.Show("Matiere bien supprimé !");
         }
 
         private void label5_Click(object sender, EventArgs e)

@@ -55,5 +55,51 @@ namespace TP5_SalmaEl
             }
             return Matieres;
         }
+
+
+
+        public ArrayList selectmatieres()
+        {
+            List<Dictionary<string, string>> R = base.select("");
+            ArrayList Matieres = new ArrayList();
+            foreach (var D in R)
+            {
+
+                Matieres.Add(D["designation"]);
+
+            }
+            return Matieres;
+
+        }
+
+        public ArrayList selectmatieresNames(string id)
+        {
+            List<Dictionary<string, string>> R = base.select(new RequestCondition("codeMat").Equal(id));
+            ArrayList Modules = new ArrayList();
+            foreach (var D in R)
+            {
+
+                Modules.Add(D["designation"]);
+
+            }
+            return Modules;
+
+        }
+
+        public ArrayList selectMatiereID(string name) // pour select ID of Modul of the NAme Selected
+        {
+            List<Dictionary<string, string>> R = base.select(new RequestCondition("designation").Equal(name));
+            ArrayList Modules = new ArrayList();
+            foreach (var D in R)
+            {
+
+                Modules.Add(D["codeMat"]);
+
+            }
+            return Modules;
+
+        }
+
+
     }
 }

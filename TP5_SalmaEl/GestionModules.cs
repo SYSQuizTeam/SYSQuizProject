@@ -405,7 +405,9 @@ namespace TP5_SalmaEl
 
         private void GesMatieresBtn_Click(object sender, EventArgs e)
         {
-            if (CodeMT.Text == null && DesignationT.Text == null)
+            string mod = "";
+
+            if (CodeMT.Text == null )
             {
                 MessageBox.Show("Choisir un Module !!");
             }
@@ -419,15 +421,22 @@ namespace TP5_SalmaEl
                 }
                 else
                 {
-                   /* string ModulName = DesignationT.Text;
-                    string Modul = "";
-                    ArrayList LMdName = new ModuleDAO("module").selectModulID(ModulName);
+                    /* string ModulName = DesignationT.Text;
+                     string Modul = "";
+                     ArrayList LMdName = new ModuleDAO("module").selectModulID(ModulName);
 
-                    foreach (string p in LMdName)
+                     foreach (string p in LMdName)
+                     {
+                         Modul += p;
+                     }*/
+                    ArrayList ModName = new ModuleDAO("module").selectmodulesNames(CodeMT.Text);
+
+                    foreach (string m in ModName)
                     {
-                        Modul += p;
-                    }*/
-                    GestionMatieres GN = new GestionMatieres(CodeMT.Text);  // Designation of Module
+                        mod += m;
+                    }
+
+                    GestionMatieres GN = new GestionMatieres(mod);  // Designation of Module
                     GN.ShowDialog();
                 }
 

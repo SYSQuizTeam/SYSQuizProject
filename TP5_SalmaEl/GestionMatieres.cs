@@ -36,7 +36,7 @@ namespace TP5_SalmaEl
         public GestionMatieres(string codeModul)
         {
             InitializeComponent();
-            ModulText.Text = codeModul;
+            ModulText.Text = codeModul;  // designation of module selected
             loadResponsable();
             ModulText.Enabled = false;
             ChargerTable();
@@ -82,16 +82,30 @@ namespace TP5_SalmaEl
         private void FillTable(string conditions)
         {
             table.Clear();
+
+            string module = ModulText.Text;
+            string mod = "";
+
+            ArrayList ModName = new ModuleDAO("module").selectModulID(module);
+
+            foreach (string m in ModName)
+            {
+                mod += m;
+            }
+
             if (conditions != "")
             {
                 ArrayList Matieres = MT.select(conditions);
                 foreach (Matiere element in Matieres)
                 {
+                    
                     DataRow row = table.NewRow();
                     row[0] = element.CodeMat;
                     row[1] = element.Designation;
                     row[2] = element.Coeff;
-                    row[3] = element.CodeModul;
+                    ArrayList ModulName = new ModuleDAO("module").selectmodulesNames(element.CodeModul);
+                    row[3] = ModulName[0];
+
                     ArrayList LPrName = new ProfesseurDAO("Professeurs").selectProfsName(element.RespMat1);
 
                     row[4] = LPrName[0];
@@ -101,24 +115,24 @@ namespace TP5_SalmaEl
             }
             else
             {
-               // ArrayList Matieres = MT.select("");
-                string cod = ModulText.Text;
-               // string Des = desMatT.Text;
-                ArrayList L = MT.select(new RequestCondition("codeModule").Equal(cod));
-                table.Clear();
-                foreach (Matiere element in L)
+                ArrayList Matieres = MT.select(new RequestCondition("codeModule").Equal(mod));
+                foreach (Matiere element in Matieres)
                 {
+
                     DataRow row = table.NewRow();
                     row[0] = element.CodeMat;
                     row[1] = element.Designation;
                     row[2] = element.Coeff;
-                    row[3] = element.CodeModul;
+                    ArrayList ModulName = new ModuleDAO("module").selectmodulesNames(element.CodeModul);
+                    row[3] = ModulName[0];
+
                     ArrayList LPrName = new ProfesseurDAO("Professeurs").selectProfsName(element.RespMat1);
 
                     row[4] = LPrName[0];
 
                     table.Rows.Add(row);
                 }
+            }
                 dataGridMatiere.DataSource = table;
                /* foreach (Matiere element in Matieres)
                 {
@@ -132,7 +146,7 @@ namespace TP5_SalmaEl
             }
             //set table
             //dataGridMatiere.DataSource = table;
-        }
+        
 
 
         private void GestionMatieres_Load(object sender, EventArgs e)
@@ -161,6 +175,7 @@ namespace TP5_SalmaEl
             string Des = desMatT.Text;
             double pds = float.Parse(CoeffText.Text);
             string module = ModulText.Text;
+            string mod = "";
             string respName = ResponsableCombo.Text;
             string resp = "";
             ArrayList LPrName = new ProfesseurDAO("Professeurs").selectProfsID(respName);
@@ -169,15 +184,21 @@ namespace TP5_SalmaEl
             {
                 resp += p;
             }
-            //  string respNom=
-            //  int nbr = 0;
+
+            ArrayList ModName = new ModuleDAO("module").selectModulID(module);
+
+            foreach (string m in ModName)
+            {
+                mod += m;
+            }
+
 
             if (cod != "" && Des != "")
             {
                // if(nbr <= NombreMatieres)
                 try
                 {
-                    Matiere E = new Matiere(cod, Des, pds, module,resp);
+                    Matiere E = new Matiere(cod, Des, pds, mod,resp);
                     MT.insert(E);
                     //nbr++;
                     MessageBox.Show("Matiere bien ajouté");
@@ -201,6 +222,7 @@ namespace TP5_SalmaEl
             string Des = desMatT.Text;
             double pds = float.Parse(CoeffText.Text);
             string module = ModulText.Text;
+            string mod = "";
             string respName = ResponsableCombo.Text;
             string resp = "";
             ArrayList LPrName = new ProfesseurDAO("Professeurs").selectProfsID(respName);
@@ -210,7 +232,15 @@ namespace TP5_SalmaEl
                 resp += p;
             }
 
-            Matiere E = new Matiere(cod, Des, pds, module,resp);
+
+            ArrayList ModName = new ModuleDAO("module").selectModulID(module);
+
+            foreach (string m in ModName)
+            {
+                mod += m;
+            }
+
+            Matiere E = new Matiere(cod, Des, pds, mod,resp);
             MT.update(E, new RequestCondition("codeMat").Equal(cod));
             MessageBox.Show("Matiere bien modifié");
             FillTable("");
@@ -264,13 +294,7 @@ namespace TP5_SalmaEl
                 Conditions += new RequestCondition("coeff").Equal(CoeffText.Text);
 
             }
-            if (checkBox4.Checked)
-            {
-                if (Conditions != "")
-                    Conditions += " and ";
-                Conditions += new RequestCondition("codeModule").Equal(ModulText.Text);
-
-            }
+           
             if (checkBox5.Checked)
             {
                 string respName = ResponsableCombo.Text;
@@ -296,5 +320,7 @@ namespace TP5_SalmaEl
         {
 
         }
+
+       
     }
 }
